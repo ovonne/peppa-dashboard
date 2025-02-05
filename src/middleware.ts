@@ -1,5 +1,5 @@
+import type { RouteType } from "@/types";
 import { NextResponse, type NextRequest } from "next/server";
-import type { RouteType } from "./types";
 
 const publicRoutes: RouteType[] = [
   {
