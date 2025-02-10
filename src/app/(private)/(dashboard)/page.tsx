@@ -1,9 +1,15 @@
+import { AppSidebar } from "@/components/AppSidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+
 export default function Dashboard() {
   return (
     <div>
-      <main>
-        <h1>Peppa dashboard</h1>
-      </main>
+      <SidebarProvider>
+        <AppSidebar />
+        <main>
+          <SidebarTrigger />
+        </main>
+      </SidebarProvider>
     </div>
   );
 }
