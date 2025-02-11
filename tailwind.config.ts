@@ -13,6 +13,7 @@ export default {
         sans: ['"Plus Jakarta Sans"', "sans-serif"],
       },
       colors: {
+        highlighted: "#9346E1",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
