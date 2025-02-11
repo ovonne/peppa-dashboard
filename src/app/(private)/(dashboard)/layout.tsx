@@ -11,7 +11,7 @@ export default function DashboardLayout({
       <SidebarProvider>
         <AppSidebar />
 
-        <div className="w-full">
+        <div className="w-full bg-semiLightGray">
           <div>{children}</div>
         </div>
       </SidebarProvider>

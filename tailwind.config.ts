@@ -12,8 +12,14 @@ export default {
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', "sans-serif"],
       },
+
       colors: {
         highlighted: "#9346E1",
+        lightGray: "#F1F3F9",
+        darkGray: "#45464E",
+        midGray: "#A6A8B1",
+        semiLightGray: "#F4F5FA",
+
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
