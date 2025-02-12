@@ -19,6 +19,9 @@ export default {
         darkGray: "#45464E",
         midGray: "#A6A8B1",
         semiLightGray: "#F4F5FA",
+        Gray: "#8B8D97",
+        mineGray: "#BEC0CA",
+        medGreen: "#519C66",
 
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

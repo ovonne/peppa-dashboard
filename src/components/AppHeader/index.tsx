@@ -4,8 +4,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 
-import BellBing from "./icons/BellBing.svg";
-import ChevronDownIcon from "./icons/chevron-down.svg";
+import { Bell, ChevronDown } from "lucide-react";
 
 export function AppHeader() {
   return (
@@ -20,14 +19,17 @@ export function AppHeader() {
                   Adams Angelo John
                 </p>
                 <div>
-                  <Image src={ChevronDownIcon} alt={"ChevronDownIcon"} />
+                  <ChevronDown
+                    className="text-darkGray"
+                    size={20}
+                  ></ChevronDown>
                 </div>
               </div>
             </DropdownMenuTrigger>
           </DropdownMenu>
 
           <div>
-            <Image src={BellBing} alt={"BellBing"}></Image>
+            <Bell className="text-highlighted" size={24}></Bell>
           </div>
           <div>
             <Image
