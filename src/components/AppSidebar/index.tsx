@@ -15,7 +15,7 @@ import {
 import Link from "next/link";
 
 const ICON_SIZE = 18;
-const ICON_STROKE_WIDTH = 3;
+const ICON_STROKE_WIDTH = 2.5;
 
 export function AppSidebar() {
   return (
