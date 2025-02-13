@@ -1,11 +1,10 @@
-import { Home } from "lucide-react";
 import type { ElementType } from "react";
-import { SelectFilterSummaryCard } from "./components/SelectFilterSummaryCard";
+
 interface DashboardSummaryCardIconProps {
   icon: ElementType;
 }
 
-function DashboardSummaryCardIcon({
+export function DashboardSummaryCardIcon({
   icon: Icon,
 }: DashboardSummaryCardIconProps) {
   return (
@@ -18,7 +17,8 @@ function DashboardSummaryCardIcon({
 interface DashboardSummaryCardTitleProps {
   children: React.ReactNode;
 }
-function DashboardSummaryCardTitle({
+
+export function DashboardSummaryCardTitle({
   children,
 }: DashboardSummaryCardTitleProps) {
   return <p className="text-[1.2rem] font-semibold">{children}</p>;
@@ -28,34 +28,62 @@ interface DashboardSummaryCardHeaderProps {
   children: React.ReactNode;
 }
 
-function DashboardSummaryCardHeader({
+export function DashboardSummaryCardHeader({
   children,
 }: DashboardSummaryCardHeaderProps) {
   return <div className="flex justify-between items-center">{children}</div>;
 }
 
-export function DashboardSummaryCard() {
+interface DashboardSummaryCardContentProps {
+  children: React.ReactNode;
+}
+
+export function DashboardSummaryCardContent({
+  children,
+}: DashboardSummaryCardContentProps) {
+  return <div className="flex justify-between mt-[3.1rem]">{children}</div>;
+}
+
+interface DashboardSummaryCardItemProps {
+  title: string;
+  value: string;
+  percentage?: number;
+}
+
+export function DashboardSummaryCardItem({
+  title,
+  value,
+  percentage,
+}: DashboardSummaryCardItemProps) {
+  const isNegative = percentage !== undefined && percentage < 0;
+
+  return (
+    <div className="w-[45%]">
+      <p className="text-[1.4rem] text-gray-500 mb-[0.8rem]">{title}</p>
+      <h2 className="text-[2rem] font-medium">
+        {value} <span> </span>
+        {percentage !== undefined && (
+          <span
+            className={`text-[1.2rem] ${
+              isNegative ? "text-medRed" : "text-medGreen"
+            }`}
+          >
+            {percentage.toFixed(2)}%
+          </span>
+        )}
+      </h2>
+    </div>
+  );
+}
+
+interface DashboardSummaryCardProps {
+  children: React.ReactNode;
+}
+
+export function DashboardSummaryCard({ children }: DashboardSummaryCardProps) {
   return (
     <div className="bg-white rounded-[1.2rem] px-[1.5rem] py-[1.1rem] w-[34.4rem] text-darkGray">
-      <DashboardSummaryCardHeader>
-        <div className="flex gap-[1rem] items-center">
-          <DashboardSummaryCardIcon icon={Home} />
-          <DashboardSummaryCardTitle>Total</DashboardSummaryCardTitle>
-        </div>
-        <SelectFilterSummaryCard></SelectFilterSummaryCard>
-      </DashboardSummaryCardHeader>
-      <div className="flex justify-between mt-[3.1rem]">
-        <div className="w-[45%]">
-          <p className="text-[1.4rem] text-Gray mb-[0.8rem]">Sales</p>
-          <h2 className="text-[2rem] font-medium">
-            KZ 0.00 <span className="text-medGreen text-[1.2rem]">+0.00%</span>
-          </h2>
-        </div>
-        <div className="w-[45%]">
-          <p className="text-[1.4rem] text-Gray mb-[0.8rem]">Volume</p>
-          <h2 className="text-[2rem] font-medium">0</h2>
-        </div>
-      </div>
+      {children}
     </div>
   );
 }

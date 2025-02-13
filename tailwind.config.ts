@@ -22,6 +22,7 @@ export default {
         Gray: "#8B8D97",
         mineGray: "#BEC0CA",
         medGreen: "#519C66",
+        medRed: "#CC5F5F",
 
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
