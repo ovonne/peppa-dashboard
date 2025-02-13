@@ -1,3 +1,4 @@
+import { AppHeader } from "@/components/AppHeader";
 import { AppSidebar } from "@/components/AppSidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 
@@ -12,7 +13,10 @@ export default function DashboardLayout({
         <AppSidebar />
 
         <div className="w-full bg-semiLightGray">
-          <div>{children}</div>
+          <div className="pb-[10rem]">
+            <AppHeader></AppHeader>
+            {children}
+          </div>
         </div>
       </SidebarProvider>
     </div>

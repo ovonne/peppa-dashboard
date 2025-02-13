@@ -1,4 +1,3 @@
-import { AppHeader } from "@/components/AppHeader";
 import { SelectFilterSummaryCard } from "@/components/DashboardSummaryCard/components/SelectFilterSummaryCard";
 import {
   DashboardSummaryCard,
@@ -55,56 +54,53 @@ const EngagementStatsItem = {
 
 export default function Dashboard() {
   return (
-    <div className="pb-[10rem]">
-      <AppHeader></AppHeader>
-      <main className="px-[2.5rem]">
-        <DashboardSummary></DashboardSummary>
+    <main className="px-[2.5rem]">
+      <DashboardSummary></DashboardSummary>
 
-        <section className="flex flex-wrap gap-[2rem]">
-          <div className="w-[40rem]">
-            <SalesChart></SalesChart>
-          </div>
-          <div className="space-y-[2rem]">
-            <DashboardSummaryCard>
-              <DashboardSummaryCardHeader>
-                <div className="flex gap-[1rem] items-center">
-                  <DashboardSummaryCardIcon icon={ShoppingBasket} />
-                  <DashboardSummaryCardTitle>Cart</DashboardSummaryCardTitle>
-                </div>
-                <SelectFilterSummaryCard />
-              </DashboardSummaryCardHeader>
-              <DashboardSummaryCardContent>
-                {item.items.map((data, index) => (
-                  <DashboardSummaryCardItem
-                    key={index}
-                    title={data.title}
-                    value={data.value}
-                    percentage={data.percentage}
-                  />
-                ))}
-              </DashboardSummaryCardContent>
-            </DashboardSummaryCard>
-            <EngagementStatsCard>
-              <EngagementStatsCardHeader>
-                <div className="flex gap-[1rem] items-center">
-                  <EngagementStatsCardIcon icon={UsersRound} />
-                </div>
-              </EngagementStatsCardHeader>
-              <EngagementStatsCardContent>
-                {EngagementStatsItem.items.map((data, index) => (
-                  <EngagementStatsCardItem
-                    key={index}
-                    title={data.title}
-                    value={data.value}
-                    percentage={data.percentage}
-                  />
-                ))}
-              </EngagementStatsCardContent>
-            </EngagementStatsCard>
-          </div>
-          <RecentRequests></RecentRequests>
-        </section>
-      </main>
-    </div>
+      <section className="flex flex-wrap gap-[2rem]">
+        <div className="w-[40rem]">
+          <SalesChart></SalesChart>
+        </div>
+        <div className="space-y-[2rem]">
+          <DashboardSummaryCard>
+            <DashboardSummaryCardHeader>
+              <div className="flex gap-[1rem] items-center">
+                <DashboardSummaryCardIcon icon={ShoppingBasket} />
+                <DashboardSummaryCardTitle>Cart</DashboardSummaryCardTitle>
+              </div>
+              <SelectFilterSummaryCard />
+            </DashboardSummaryCardHeader>
+            <DashboardSummaryCardContent>
+              {item.items.map((data, index) => (
+                <DashboardSummaryCardItem
+                  key={index}
+                  title={data.title}
+                  value={data.value}
+                  percentage={data.percentage}
+                />
+              ))}
+            </DashboardSummaryCardContent>
+          </DashboardSummaryCard>
+          <EngagementStatsCard>
+            <EngagementStatsCardHeader>
+              <div className="flex gap-[1rem] items-center">
+                <EngagementStatsCardIcon icon={UsersRound} />
+              </div>
+            </EngagementStatsCardHeader>
+            <EngagementStatsCardContent>
+              {EngagementStatsItem.items.map((data, index) => (
+                <EngagementStatsCardItem
+                  key={index}
+                  title={data.title}
+                  value={data.value}
+                  percentage={data.percentage}
+                />
+              ))}
+            </EngagementStatsCardContent>
+          </EngagementStatsCard>
+        </div>
+        <RecentRequests></RecentRequests>
+      </section>
+    </main>
   );
 }

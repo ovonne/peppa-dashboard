@@ -78,11 +78,17 @@ export function DashboardSummaryCardItem({
 
 interface DashboardSummaryCardProps {
   children: React.ReactNode;
+  Width?: string;
 }
 
-export function DashboardSummaryCard({ children }: DashboardSummaryCardProps) {
+export function DashboardSummaryCard({
+  children,
+  Width = "34.4rem",
+}: DashboardSummaryCardProps) {
   return (
-    <div className="bg-white rounded-[1.2rem] px-[1.5rem] py-[1.1rem] w-[34.4rem] text-darkGray">
+    <div
+      className={`bg-white rounded-[1.2rem] px-[1.5rem] py-[1.1rem]  text-darkGray w-[${Width}]`}
+    >
       {children}
     </div>
   );
