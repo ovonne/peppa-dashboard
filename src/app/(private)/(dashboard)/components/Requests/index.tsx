@@ -49,7 +49,7 @@ function RequestItem({ image, name, price, date, status }: RequestItemProps) {
 
 export function RecentRequests() {
   return (
-    <div className="bg-white rounded-[1.2rem] p-[2rem] min-w-[60rem]">
+    <div className="bg-white rounded-[1.2rem] p-[2rem] flex-1">
       <RecentRequestsHeader />
       <div className="mt-[2.3rem] space-y-[1rem]">
         {RequestItems.map((requestItem, index) => (

@@ -5,12 +5,17 @@ import {
 import Image from "next/image";
 
 import { Bell, ChevronDown } from "lucide-react";
+import { SidebarTrigger } from "../ui/sidebar";
 
 export function AppHeader() {
   return (
     <div className="bg-white">
       <div className="flex justify-between py-[17.5px] px-[21px]">
-        <h1 className="text-[20px] font-medium">Control Panel</h1>
+        <div className="flex gap-[1rem]">
+          <SidebarTrigger></SidebarTrigger>
+          <h1 className="text-[20px] font-medium">Control Panel</h1>
+        </div>
+
         <div className="flex gap-[1.4rem] items-center">
           <DropdownMenu>
             <DropdownMenuTrigger className="bg-highlighted/10 px-[1.2rem] py-[0.6rem] rounded-[0.8rem]">

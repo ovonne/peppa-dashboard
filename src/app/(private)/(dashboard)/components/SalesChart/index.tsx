@@ -78,6 +78,7 @@ export function SalesChart() {
               content={<ChartTooltipContent hideLabel />}
             />
             <Pie
+              className="text-[1.6rem] text-midGray"
               data={chartData}
               dataKey="visitors"
               nameKey="browser"
