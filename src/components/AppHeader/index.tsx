@@ -31,13 +31,12 @@ export function AppHeader() {
           <div>
             <Bell className="text-highlighted" size={24}></Bell>
           </div>
-          <div>
+          <div className="w-[4.4rem] h-[4.4rem]  bg-lightGray rounded-[1.2rem] overflow-hidden relative">
             <Image
               src={"https://github.com/Adao-Angelo.png"}
-              alt={"User profile Image"}
-              className="rounded-[1.2rem]"
-              width={40}
-              height={40}
+              alt={"User profile:" + "Adams Angelo"}
+              fill
+              className="object-cover rounded-[1.2rem]"
             ></Image>
           </div>
         </div>
