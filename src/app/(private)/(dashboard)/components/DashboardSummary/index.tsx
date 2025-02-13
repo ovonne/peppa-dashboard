@@ -11,7 +11,7 @@ import { summaryData } from "@/store/Summary";
 
 export function DashboardSummary() {
   return (
-    <div className="flex gap-[2rem] px-[2.5rem] py-[1.8rem]">
+    <div className="flex flex-wrap gap-[2rem]  py-[1.8rem]">
       {summaryData.map((item) => (
         <DashboardSummaryCard key={item.id}>
           <DashboardSummaryCardHeader>
