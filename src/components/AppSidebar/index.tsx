@@ -12,6 +12,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import Image from "next/image";
 import Link from "next/link";
 
 const ICON_SIZE = 18;
@@ -21,9 +22,16 @@ export function AppSidebar() {
   return (
     <Sidebar className="text-white">
       <SidebarHeader className="p-[1rem] text-center">
-        <h1 className="font-bold text-[1.6rem]">Peppa</h1>
+        <div className=" w-full h-[6rem] overflow-hidden relative">
+          <Image
+            className="object-cover"
+            alt="logo"
+            fill
+            src={"/logo.svg"}
+          ></Image>
+        </div>
       </SidebarHeader>
-      <SidebarContent className="mt-[3rem]">
+      <SidebarContent className="mt-[1rem]">
         <SidebarGroup>
           <SidebarGroupContent className="p-[1rem]">
             <SidebarMenu>

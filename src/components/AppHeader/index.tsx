@@ -4,7 +4,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 
-import { Bell, ChevronDown } from "lucide-react";
+import { Bell, ChevronDown, Home } from "lucide-react";
 import { SidebarTrigger } from "../ui/sidebar";
 
 export function AppHeader() {
@@ -46,7 +46,8 @@ export function AppHeader() {
           </div>
         </div>
       </div>
-      <div className="border-lightGray border-t py-[0.5rem] px-[4rem]">
+      <div className="border-lightGray flex  gap-[1rem] border-t py-[0.5rem] px-[4rem]">
+        <Home size={18} className="text-highlighted"></Home>
         <p className="text-[1.2rem] text-midGray">Home</p>
       </div>
     </div>
