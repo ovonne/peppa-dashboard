@@ -1,7 +1,6 @@
 "use client";
-import { ReactSVG } from "react-svg";
-import HomeIcon from "./icons/homeIcon.svg";
-import LogOutIcon from "./icons/logoutIcon.svg";
+
+import { Home, LogOut, Package, Settings, Shield, Users } from "lucide-react";
 
 import {
   Sidebar,
@@ -15,41 +14,57 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 
-const sidebarItems = [
-  { title: "Home", url: "#", icon: HomeIcon },
-  { title: "Dashboard", url: "#", icon: HomeIcon },
-  { title: "Settings", url: "#", icon: HomeIcon },
-];
+const ICON_SIZE = 18;
+const ICON_STROKE_WIDTH = 3;
 
 export function AppSidebar() {
   return (
-    <Sidebar>
-      <SidebarHeader></SidebarHeader>
-      <SidebarContent>
+    <Sidebar className="text-white">
+      <SidebarHeader className="p-[1rem] text-center">
+        <h1 className="font-bold text-[1.6rem]">Peppa</h1>
+      </SidebarHeader>
+      <SidebarContent className="mt-[3rem]">
         <SidebarGroup>
-          <SidebarGroupContent className="p-[1.6rem]">
+          <SidebarGroupContent className="p-[1rem]">
             <SidebarMenu>
-              {sidebarItems.map((item, index) => (
-                <Link key={item.title + index} href={item.url}>
-                  <SidebarMenuItem className="group m-auto flex p-[1.6rem] rounded-[1.2rem] hover:bg-white hover:text-highlighted">
-                    <div className="w-5 h-5 text-gray-500 group-hover:text-highlighted">
-                      <ReactSVG src={item.icon} style={{ fill: "red" }} />
-                    </div>
-                  </SidebarMenuItem>
-                </Link>
-              ))}
+              <Link href="#">
+                <SidebarMenuItem className="flex w-[5.6rem] items-center h-[5.6rem] justify-center p-4 rounded-[1.2rem] hover:text-highlighted hover:bg-white transition-colors">
+                  <Home size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />
+                </SidebarMenuItem>
+              </Link>
+
+              <Link href="#">
+                <SidebarMenuItem className="flex w-[5.6rem] items-center h-[5.6rem] justify-center p-4 rounded-[1.2rem] hover:text-highlighted hover:bg-white transition-colors">
+                  <Shield size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />
+                </SidebarMenuItem>
+              </Link>
+
+              <Link href="#">
+                <SidebarMenuItem className="flex w-[5.6rem] items-center h-[5.6rem] justify-center p-4 rounded-[1.2rem] hover:text-highlighted hover:bg-white transition-colors">
+                  <Package size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />
+                </SidebarMenuItem>
+              </Link>
+
+              <Link href="#">
+                <SidebarMenuItem className="flex w-[5.6rem] items-center h-[5.6rem] justify-center p-4 rounded-[1.2rem] hover:text-highlighted hover:bg-white transition-colors">
+                  <Users size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />
+                </SidebarMenuItem>
+              </Link>
+
+              <Link href="#">
+                <SidebarMenuItem className="flex w-[5.6rem] items-center h-[5.6rem] justify-center p-4 rounded-[1.2rem] hover:text-highlighted hover:bg-white transition-colors">
+                  <Settings size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />
+                </SidebarMenuItem>
+              </Link>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>
-        <Link
-          className="block items-center p-[1.5rem] rounded-[1.2rem] hover:bg-white hover:text-highlighted"
-          href="#"
-        >
-          <div className="w-4 h-4 text-gray-500 group-hover:text-highlighted">
-            <ReactSVG src={LogOutIcon} style={{ fill: "currentColor" }} />
-          </div>
+      <SidebarFooter className="p-[2rem]">
+        <Link href="#">
+          <SidebarMenuItem className="flex w-[5.6rem] items-center h-[5.6rem] justify-center p-4 rounded-[1.2rem] hover:text-highlighted hover:bg-white transition-colors">
+            <LogOut size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />
+          </SidebarMenuItem>
         </Link>
       </SidebarFooter>
     </Sidebar>
