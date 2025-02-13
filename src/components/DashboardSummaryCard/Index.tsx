@@ -46,7 +46,7 @@ export function DashboardSummaryCardContent({
 
 interface DashboardSummaryCardItemProps {
   title: string;
-  value: string;
+  value: string | number;
   percentage?: number;
 }
 
