@@ -64,7 +64,7 @@ export default function Dashboard() {
         <div className="space-y-[2rem]">
           <DashboardSummaryCard>
             <DashboardSummaryCardHeader>
-              <div className="flex gap-[1rem] items-center">
+              <div className="flex items-center gap-[1rem]">
                 <DashboardSummaryCardIcon icon={ShoppingBasket} />
                 <DashboardSummaryCardTitle>Cart</DashboardSummaryCardTitle>
               </div>
@@ -83,7 +83,7 @@ export default function Dashboard() {
           </DashboardSummaryCard>
           <EngagementStatsCard>
             <EngagementStatsCardHeader>
-              <div className="flex gap-[1rem] items-center">
+              <div className="flex items-center gap-[1rem]">
                 <EngagementStatsCardIcon icon={UsersRound} />
               </div>
             </EngagementStatsCardHeader>

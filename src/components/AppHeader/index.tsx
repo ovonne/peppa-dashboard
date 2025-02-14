@@ -10,17 +10,17 @@ import { SidebarTrigger } from "../ui/sidebar";
 export function AppHeader() {
   return (
     <div className="bg-white">
-      <div className="flex justify-between py-[17.5px] px-[21px]">
+      <div className="flex justify-between px-[21px] py-[17.5px]">
         <div className="flex gap-[1rem]">
           <SidebarTrigger></SidebarTrigger>
           <h1 className="text-[20px] font-medium">Control Panel</h1>
         </div>
 
-        <div className="flex gap-[1.4rem] items-center">
+        <div className="flex items-center gap-[1.4rem]">
           <DropdownMenu>
-            <DropdownMenuTrigger className="bg-highlighted/10 px-[1.2rem] py-[0.6rem] rounded-[0.8rem]">
+            <DropdownMenuTrigger className="rounded-[0.8rem] bg-highlighted/10 px-[1.2rem] py-[0.6rem]">
               <div className="flex items-center gap-[2rem]">
-                <p className="font-semibold text-[1.4rem] text-highlighted">
+                <p className="text-[1.4rem] font-semibold text-highlighted">
                   Adams Angelo John
                 </p>
                 <div>
@@ -36,17 +36,17 @@ export function AppHeader() {
           <div>
             <Bell className="text-highlighted" size={24}></Bell>
           </div>
-          <div className="w-[4.4rem] h-[4.4rem]  bg-lightGray rounded-[1.2rem] overflow-hidden relative">
+          <div className="relative h-[4.4rem] w-[4.4rem] overflow-hidden rounded-[1.2rem] bg-lightGray">
             <Image
               src={"https://github.com/Adao-Angelo.png"}
               alt={"User profile:" + "Adams Angelo"}
               fill
-              className="object-cover rounded-[1.2rem]"
+              className="rounded-[1.2rem] object-cover"
             ></Image>
           </div>
         </div>
       </div>
-      <div className="border-lightGray flex  gap-[1rem] border-t py-[0.5rem] px-[4rem]">
+      <div className="flex gap-[1rem] border-t border-lightGray px-[4rem] py-[0.5rem]">
         <Home size={18} className="text-highlighted"></Home>
         <p className="text-[1.2rem] text-midGray">Home</p>
       </div>

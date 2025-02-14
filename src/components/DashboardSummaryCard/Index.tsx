@@ -8,7 +8,7 @@ export function DashboardSummaryCardIcon({
   icon: Icon,
 }: DashboardSummaryCardIconProps) {
   return (
-    <div className="bg-highlighted/10 h-[3.6rem] w-[3.6rem] flex justify-center items-center rounded-[1.2rem]">
+    <div className="flex h-[3.6rem] w-[3.6rem] items-center justify-center rounded-[1.2rem] bg-highlighted/10">
       <Icon size={20} className="text-highlighted"></Icon>
     </div>
   );
@@ -31,7 +31,7 @@ interface DashboardSummaryCardHeaderProps {
 export function DashboardSummaryCardHeader({
   children,
 }: DashboardSummaryCardHeaderProps) {
-  return <div className="flex justify-between items-center">{children}</div>;
+  return <div className="flex items-center justify-between">{children}</div>;
 }
 
 interface DashboardSummaryCardContentProps {
@@ -41,7 +41,7 @@ interface DashboardSummaryCardContentProps {
 export function DashboardSummaryCardContent({
   children,
 }: DashboardSummaryCardContentProps) {
-  return <div className="flex justify-between mt-[3.1rem]">{children}</div>;
+  return <div className="mt-[3.1rem] flex justify-between">{children}</div>;
 }
 
 interface DashboardSummaryCardItemProps {
@@ -59,7 +59,7 @@ export function DashboardSummaryCardItem({
 
   return (
     <div className="w-[45%]">
-      <p className="text-[1.4rem] text-gray-500 mb-[0.8rem]">{title}</p>
+      <p className="mb-[0.8rem] text-[1.4rem] text-gray-500">{title}</p>
       <h2 className="text-[2rem] font-medium">
         {value} <span> </span>
         {percentage !== undefined && (
@@ -87,7 +87,7 @@ export function DashboardSummaryCard({
 }: DashboardSummaryCardProps) {
   return (
     <div
-      className={`bg-white rounded-[1.2rem] px-[1.5rem] py-[1.1rem]  text-darkGray w-[${Width}]`}
+      className={`rounded-[1.2rem] bg-white px-[1.5rem] py-[1.1rem] text-darkGray w-[${Width}]`}
     >
       {children}
     </div>

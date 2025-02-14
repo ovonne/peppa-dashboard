@@ -12,9 +12,9 @@ import { InChargeTable } from "./components/InChangeTable/InChangeTable";
 
 export default function InCharge() {
   return (
-    <div className="px-[2.5rem] flex flex-col gap-[2.5rem] mt-[2rem]">
+    <div className="mt-[2rem] flex flex-col gap-[2.5rem] px-[2.5rem]">
       <div className="flex items-end justify-between">
-        <h2 className="font-medium text-[1.6rem]">In Charge</h2>
+        <h2 className="text-[1.6rem] font-medium">In Charge</h2>
         <Button className="flex gap-[1rem]">
           <Plus className="!size-[2rem]" />
           Add In Charge
@@ -24,7 +24,7 @@ export default function InCharge() {
         <div className="flex-1">
           <DashboardSummaryCard Width="auto">
             <DashboardSummaryCardHeader>
-              <div className="flex gap-[1rem] items-center">
+              <div className="flex items-center gap-[1rem]">
                 <DashboardSummaryCardIcon icon={UsersRound} />
               </div>
               <SelectFilterSummaryCard />
@@ -53,7 +53,7 @@ export default function InCharge() {
         <div className="flex-1">
           <DashboardSummaryCard Width="auto">
             <DashboardSummaryCardHeader>
-              <div className="flex gap-[1rem] items-center">
+              <div className="flex items-center gap-[1rem]">
                 <DashboardSummaryCardIcon icon={UserPlus} />
               </div>
               <SelectFilterSummaryCard />

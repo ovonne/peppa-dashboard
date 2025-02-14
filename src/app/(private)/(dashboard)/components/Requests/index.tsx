@@ -20,14 +20,14 @@ interface RequestItemProps {
 
 function RequestItem({ image, name, price, date, status }: RequestItemProps) {
   return (
-    <div className="flex justify-between pb-[1.2rem] border-b border-lightGray">
+    <div className="flex justify-between border-b border-lightGray pb-[1.2rem]">
       <div className="flex gap-[1.4rem]">
-        <div className="w-[4.9rem] h-[4.9rem] bg-lightGray rounded-[1.2rem] overflow-hidden relative">
+        <div className="relative h-[4.9rem] w-[4.9rem] overflow-hidden rounded-[1.2rem] bg-lightGray">
           <Image
             src={image}
             alt={"Image of: " + name}
             fill
-            className="object-cover rounded-[1.2rem]"
+            className="rounded-[1.2rem] object-cover"
           />
         </div>
         <div className="space-y-[0.6rem]">
@@ -36,7 +36,7 @@ function RequestItem({ image, name, price, date, status }: RequestItemProps) {
         </div>
       </div>
       <div className="space-y-[0.6rem]">
-        <p className="text-mineGray text-[1.4rem]">{date}</p>
+        <p className="text-[1.4rem] text-mineGray">{date}</p>
         {status === "Pending" ? (
           <Badge variant="destructive">Pending</Badge>
         ) : (
@@ -49,7 +49,7 @@ function RequestItem({ image, name, price, date, status }: RequestItemProps) {
 
 export function RecentRequests() {
   return (
-    <div className="bg-white rounded-[1.2rem] p-[2rem] flex-1">
+    <div className="flex-1 rounded-[1.2rem] bg-white p-[2rem]">
       <RecentRequestsHeader />
       <div className="mt-[2.3rem] space-y-[1rem]">
         {RequestItems.map((requestItem, index) => (

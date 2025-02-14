@@ -12,7 +12,7 @@ export function SelectFilterSummaryCard() {
   return (
     <div>
       <Select>
-        <SelectTrigger className="w-[100px] border-none  shadow-none outline-none bg-white">
+        <SelectTrigger className="w-[100px] border-none bg-white shadow-none outline-none">
           <p className="text-[1.2rem] text-midGray">
             <SelectValue placeholder="This week" />
           </p>

@@ -28,7 +28,7 @@ export function AppSidebar() {
     <TooltipProvider>
       <Sidebar className="text-white">
         <SidebarHeader className="p-[1rem] text-center">
-          <div className="w-full h-[6rem] overflow-hidden relative">
+          <div className="relative h-[6rem] w-full overflow-hidden">
             <Image className="object-cover" alt="logo" fill src={"/logo.svg"} />
           </div>
         </SidebarHeader>
@@ -39,7 +39,7 @@ export function AppSidebar() {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Link href="#">
-                      <SidebarMenuItem className="flex w-[5.6rem] items-center h-[5.6rem] justify-center p-4 rounded-[1.2rem] hover:text-highlighted hover:bg-white transition-colors">
+                      <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
                         <Home
                           size={ICON_SIZE}
                           strokeWidth={ICON_STROKE_WIDTH}
@@ -53,7 +53,7 @@ export function AppSidebar() {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Link href="#">
-                      <SidebarMenuItem className="flex w-[5.6rem] items-center h-[5.6rem] justify-center p-4 rounded-[1.2rem] hover:text-highlighted hover:bg-white transition-colors">
+                      <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
                         <Shield
                           size={ICON_SIZE}
                           strokeWidth={ICON_STROKE_WIDTH}
@@ -67,7 +67,7 @@ export function AppSidebar() {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Link href="#">
-                      <SidebarMenuItem className="flex w-[5.6rem] items-center h-[5.6rem] justify-center p-4 rounded-[1.2rem] hover:text-highlighted hover:bg-white transition-colors">
+                      <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
                         <Package
                           size={ICON_SIZE}
                           strokeWidth={ICON_STROKE_WIDTH}
@@ -81,7 +81,7 @@ export function AppSidebar() {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Link href="#">
-                      <SidebarMenuItem className="flex w-[5.6rem] items-center h-[5.6rem] justify-center p-4 rounded-[1.2rem] hover:text-highlighted hover:bg-white transition-colors">
+                      <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
                         <Users
                           size={ICON_SIZE}
                           strokeWidth={ICON_STROKE_WIDTH}
@@ -95,7 +95,7 @@ export function AppSidebar() {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Link href="#">
-                      <SidebarMenuItem className="flex w-[5.6rem] items-center h-[5.6rem] justify-center p-4 rounded-[1.2rem] hover:text-highlighted hover:bg-white transition-colors">
+                      <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
                         <Settings
                           size={ICON_SIZE}
                           strokeWidth={ICON_STROKE_WIDTH}
@@ -113,7 +113,7 @@ export function AppSidebar() {
           <Tooltip>
             <TooltipTrigger asChild>
               <Link href="#">
-                <SidebarMenuItem className="flex w-[5.6rem] items-center h-[5.6rem] justify-center p-4 rounded-[1.2rem] hover:text-highlighted hover:bg-white transition-colors">
+                <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
                   <LogOut size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />
                 </SidebarMenuItem>
               </Link>

@@ -8,7 +8,7 @@ export function EngagementStatsCardIcon({
   icon: Icon,
 }: EngagementStatsCardIconProps) {
   return (
-    <div className="bg-white/10 h-[3.6rem] w-[3.6rem] flex justify-center items-center rounded-[1.2rem]">
+    <div className="flex h-[3.6rem] w-[3.6rem] items-center justify-center rounded-[1.2rem] bg-white/10">
       <Icon size={20} className="text-white"></Icon>
     </div>
   );
@@ -21,7 +21,7 @@ interface EngagementStatsCardHeaderProps {
 export function EngagementStatsCardHeader({
   children,
 }: EngagementStatsCardHeaderProps) {
-  return <div className="flex justify-between items-center">{children}</div>;
+  return <div className="flex items-center justify-between">{children}</div>;
 }
 
 interface EngagementStatsCardContentProps {
@@ -31,7 +31,7 @@ interface EngagementStatsCardContentProps {
 export function EngagementStatsCardContent({
   children,
 }: EngagementStatsCardContentProps) {
-  return <div className="flex justify-between mt-[3.1rem]">{children}</div>;
+  return <div className="mt-[3.1rem] flex justify-between">{children}</div>;
 }
 
 interface EngagementStatsCardItemProps {
@@ -49,8 +49,8 @@ export function EngagementStatsCardItem({
 
   return (
     <div className="w-[45%] text-white">
-      <p className="text-[1.4rem]  mb-[0.8rem]">{title}</p>
-      <h2 className="text-[2rem] font-medium ">
+      <p className="mb-[0.8rem] text-[1.4rem]">{title}</p>
+      <h2 className="text-[2rem] font-medium">
         {value} <span> </span>
         {percentage !== undefined && (
           <span
@@ -72,7 +72,7 @@ interface EngagementStatsCardProps {
 
 export function EngagementStatsCard({ children }: EngagementStatsCardProps) {
   return (
-    <div className="bg-highlighted rounded-[1.2rem] px-[1.5rem] py-[1.1rem] w-[34.4rem] text-darkGray">
+    <div className="w-[34.4rem] rounded-[1.2rem] bg-highlighted px-[1.5rem] py-[1.1rem] text-darkGray">
       {children}
     </div>
   );
