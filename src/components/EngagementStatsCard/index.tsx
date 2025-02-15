@@ -2,14 +2,21 @@ import type { ElementType } from "react";
 
 interface EngagementStatsCardIconProps {
   icon: ElementType;
+  bg?: string;
 }
 
 export function EngagementStatsCardIcon({
   icon: Icon,
+  bg = "white/10",
 }: EngagementStatsCardIconProps) {
   return (
-    <div className="flex h-[3.6rem] w-[3.6rem] items-center justify-center rounded-[1.2rem] bg-white/10">
-      <Icon size={20} className="text-white"></Icon>
+    <div
+      className={`flex h-[3.6rem] w-[3.6rem] items-center justify-center rounded-[1.2rem] bg-${bg}`}
+    >
+      <Icon
+        size={20}
+        className={`${!bg ? "text-white" : "text-highlighted"}`}
+      ></Icon>
     </div>
   );
 }

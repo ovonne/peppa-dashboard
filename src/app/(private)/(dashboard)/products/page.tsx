@@ -7,7 +7,13 @@ import {
 } from "@/components/EngagementStatsCard/";
 
 import { Button } from "@/components/ui/button";
-import { Plus, UserPlus, UsersRound } from "lucide-react";
+import {
+  ChartNoAxesCombined,
+  NotebookPen,
+  Plus,
+  ShoppingBag,
+  StickyNote,
+} from "lucide-react";
 
 export default function InCharge() {
   return (
@@ -24,13 +30,18 @@ export default function InCharge() {
         <EngagementStatsCard>
           <EngagementStatsCardHeader>
             <div className="flex items-center gap-[1rem]">
-              <EngagementStatsCardIcon icon={UsersRound} />
+              <EngagementStatsCardIcon bg="white" icon={ShoppingBag} />
             </div>
           </EngagementStatsCardHeader>
           <EngagementStatsCardContent>
             <EngagementStatsCardItem
-              title={"All in charge"}
+              title={"All in products"}
               value={"1,200"}
+              percentage={15.8}
+            />
+            <EngagementStatsCardItem
+              title={"Actives"}
+              value={"50"}
               percentage={15.8}
             />
           </EngagementStatsCardContent>
@@ -39,14 +50,14 @@ export default function InCharge() {
         <EngagementStatsCard>
           <EngagementStatsCardHeader>
             <div className="flex items-center gap-[1rem]">
-              <EngagementStatsCardIcon icon={UserPlus} />
+              <EngagementStatsCardIcon bg="white" icon={NotebookPen} />
             </div>
           </EngagementStatsCardHeader>
           <EngagementStatsCardContent>
             <EngagementStatsCardItem
-              title={"News in charge"}
-              value={"1,200"}
-              percentage={15.8}
+              title={"School supplies"}
+              value={"23"}
+              percentage={89}
             />
           </EngagementStatsCardContent>
         </EngagementStatsCard>
@@ -54,14 +65,14 @@ export default function InCharge() {
         <EngagementStatsCard>
           <EngagementStatsCardHeader>
             <div className="flex items-center gap-[1rem]">
-              <EngagementStatsCardIcon icon={UsersRound} />
+              <EngagementStatsCardIcon bg="white" icon={StickyNote} />
             </div>
           </EngagementStatsCardHeader>
           <EngagementStatsCardContent>
             <EngagementStatsCardItem
-              title={"All in charge"}
-              value={"1,200"}
-              percentage={15.8}
+              title={"Proof leaves"}
+              value={"23"}
+              percentage={68}
             />
           </EngagementStatsCardContent>
         </EngagementStatsCard>
@@ -69,13 +80,13 @@ export default function InCharge() {
         <EngagementStatsCard>
           <EngagementStatsCardHeader>
             <div className="flex items-center gap-[1rem]">
-              <EngagementStatsCardIcon icon={UserPlus} />
+              <EngagementStatsCardIcon bg="white" icon={ChartNoAxesCombined} />
             </div>
           </EngagementStatsCardHeader>
           <EngagementStatsCardContent>
             <EngagementStatsCardItem
-              title={"News in charge"}
-              value={"1,200"}
+              title={"Exercise sheet"}
+              value={"200"}
               percentage={15.8}
             />
           </EngagementStatsCardContent>
