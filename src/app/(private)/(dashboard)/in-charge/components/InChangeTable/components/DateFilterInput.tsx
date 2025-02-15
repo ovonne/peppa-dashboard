@@ -55,10 +55,7 @@ export function DateFilterInput() {
                         !field.value && "text-muted-foreground",
                       )}
                     >
-                      <CalendarIcon
-                        size={20}
-                        className="ml-auto h-[2rem] w-[2rem] opacity-50"
-                      />
+                      <CalendarIcon size={20} className="ml-auto" />
                       {field.value ? (
                         format(field.value, "PPP")
                       ) : (

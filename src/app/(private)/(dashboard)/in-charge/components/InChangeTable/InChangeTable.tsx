@@ -22,9 +22,24 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { inCharge } from "@/store/InCharge";
-import { Copy, FilterIcon, ListFilter } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Copy,
+  FilterIcon,
+  ListFilter,
+} from "lucide-react";
 import { ActionsTableSelect } from "./components/ActionsTableSelect";
 import { DateFilterInput } from "./components/DateFilterInput";
+
+const TableHeaderItems = [
+  "Name",
+  "Email",
+  "Contact",
+  "Associated Children",
+  "Date",
+  "Status",
+];
 
 export function InChargeTable() {
   return (
@@ -51,14 +66,7 @@ export function InChargeTable() {
               <TableHead className="w-[100px]">
                 <Checkbox id="terms" />
               </TableHead>
-              {[
-                "Name",
-                "Email",
-                "Contact",
-                "Associated Children",
-                "Date",
-                "Status",
-              ].map((header) => (
+              {TableHeaderItems.map((header) => (
                 <TableHead key={header}>
                   <div className="flex items-center gap-[0.8rem]">
                     <p className="text-[1.4rem] font-medium text-darkGray">
@@ -118,17 +126,44 @@ export function InChargeTable() {
           </TableBody>
           <TableFooter>
             <TableRow>
-              <TableCell>
-                <Select>
-                  <SelectTrigger className="w-[8rem] rounded-[1.2rem] bg-stroke/30 text-[1.2rem]">
-                    <SelectValue placeholder="Page" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>Page</SelectLabel>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
+              <TableCell colSpan={TableHeaderItems.length + 1}>
+                <div className="flex justify-between">
+                  <div className="flex items-center gap-[2rem]">
+                    <div className="flex items-center gap-[1rem]">
+                      <Select>
+                        <SelectTrigger className="h-[3rem] w-[6rem] rounded-[1.2rem] bg-stroke/30 text-[1.2rem]">
+                          <SelectValue placeholder="10" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Page</SelectLabel>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                      <p className="text-Gray">Items for page</p>
+                    </div>
+                    <p>10 - 1 of 200 items</p>
+                  </div>
+                  <div className="flex items-center gap-[2rem]">
+                    <div className="flex items-center gap-[1rem]">
+                      <Select>
+                        <SelectTrigger className="h-[3rem] w-[6rem] rounded-[1.2rem] bg-stroke/30 text-[1.2rem]">
+                          <SelectValue placeholder="1" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Page</SelectLabel>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                      <p className="text-[1.4rem] text-Gray">of 44 pages</p>
+                    </div>
+                    <div className="flex gap-[1rem] text-darkGray">
+                      <ChevronLeft size={18}></ChevronLeft>
+                      <ChevronRight size={18}></ChevronRight>
+                    </div>
+                  </div>
+                </div>
               </TableCell>
             </TableRow>
           </TableFooter>

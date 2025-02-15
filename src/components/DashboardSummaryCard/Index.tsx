@@ -48,19 +48,23 @@ interface DashboardSummaryCardItemProps {
   title: string;
   value: string | number;
   percentage?: number;
+  text_is_med?: boolean;
 }
 
 export function DashboardSummaryCardItem({
   title,
   value,
   percentage,
+  text_is_med,
 }: DashboardSummaryCardItemProps) {
   const isNegative = percentage !== undefined && percentage < 0;
 
   return (
-    <div className="w-[45%]">
-      <p className="mb-[0.8rem] text-[1.4rem] text-gray-500">{title}</p>
-      <h2 className="text-[2rem] font-medium">
+    <div className="w-[50%]">
+      <p className={`$ mb-[0.8rem] text-[1.4rem] text-gray-500`}>{title}</p>
+      <h2
+        className={`${text_is_med ? "text-[1.4rem]" : "text-[2rem]"} font-medium`}
+      >
         {value} <span> </span>
         {percentage !== undefined && (
           <span
