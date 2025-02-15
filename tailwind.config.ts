@@ -15,11 +15,13 @@ export default {
 
       colors: {
         highlighted: "#9346E1",
+        secundGray: "#6E7079",
         lightGray: "#F1F3F9",
         darkGray: "#45464E",
         midGray: "#A6A8B1",
         semiLightGray: "#F4F5FA",
         Gray: "#8B8D97",
+        stroke: "#CFD3D4",
         mineGray: "#BEC0CA",
         medGreen: "#519C66",
         medRed: "#CC5F5F",

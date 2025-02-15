@@ -30,10 +30,8 @@ export function AddInChargeModal() {
       </DialogTrigger>
       <DialogContent className="rounded-[1.4rem] sm:max-w-[42.3rem]">
         <DialogHeader>
-          <DialogTitle>
-            <h1 className="text-[2rem] font-medium text-black">
-              Add In Charge
-            </h1>
+          <DialogTitle className="text-[2rem] font-medium text-black">
+            Add In Charge
           </DialogTitle>
         </DialogHeader>
         <p className="my-[2.8rem] text-[1.6rem] font-medium text-Gray">

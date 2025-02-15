@@ -38,7 +38,7 @@ export function AppSidebar() {
               <SidebarMenu>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Link href="#">
+                    <Link href="/">
                       <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
                         <Home
                           size={ICON_SIZE}
