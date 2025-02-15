@@ -6,8 +6,8 @@ import {
   DashboardSummaryCardItem,
 } from "@/components/DashboardSummaryCard/Index";
 import { SelectFilterSummaryCard } from "@/components/DashboardSummaryCard/components/SelectFilterSummaryCard";
-import { Button } from "@/components/ui/button";
-import { Plus, UserPlus, UsersRound } from "lucide-react";
+import { UserPlus, UsersRound } from "lucide-react";
+import { AddInChargeModal } from "./components/AddInChargeModal";
 import { InChargeTable } from "./components/InChangeTable/InChangeTable";
 
 export default function InCharge() {
@@ -15,10 +15,7 @@ export default function InCharge() {
     <div className="mt-[2rem] flex flex-col gap-[2.5rem] px-[2.5rem]">
       <div className="flex items-end justify-between">
         <h2 className="text-[1.6rem] font-medium">In Charge</h2>
-        <Button className="flex gap-[1rem]">
-          <Plus className="!size-[2rem]" />
-          Add In Charge
-        </Button>
+        <AddInChargeModal></AddInChargeModal>
       </div>
       <div className="flex flex-auto gap-[2.5rem]">
         <div className="flex-1">
