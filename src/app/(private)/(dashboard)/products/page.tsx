@@ -14,6 +14,7 @@ import {
   ShoppingBag,
   StickyNote,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function InCharge() {
   return (
@@ -21,10 +22,12 @@ export default function InCharge() {
       <div className="flex items-end justify-between">
         <h2 className="text-[1.6rem] font-medium">Products</h2>
 
-        <Button className="flex rounded-[0.8rem]">
-          <Plus></Plus>
-          <span>Add Product</span>
-        </Button>
+        <Link href={"/products/add-product"}>
+          <Button className="flex rounded-[0.8rem]">
+            <Plus></Plus>
+            <span>Add Product</span>
+          </Button>
+        </Link>
       </div>
       <div className="flex flex-wrap gap-[2.5rem]">
         <EngagementStatsCard>

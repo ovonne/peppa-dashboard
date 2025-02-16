@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { CardContent, CardHeader } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 import {
   Form,
@@ -59,7 +59,6 @@ export default function SignIn() {
 
   return (
     <div className="flex">
-      <Toaster position="top-right" reverseOrder={false} />
       <div className="flex h-screen w-[50%] items-center justify-center">
         <div className="w-[36rem]">
           <CardHeader className="mb-[5.6rem]">
