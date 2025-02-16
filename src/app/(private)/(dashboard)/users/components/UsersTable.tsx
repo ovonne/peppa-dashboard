@@ -42,7 +42,7 @@ const TableHeaderItems = [
   "Status",
 ];
 
-export function InChargeTable() {
+export function UsersTable() {
   return (
     <div className="rounded-[1.2rem] bg-white p-[2.2rem]">
       <div className="flex justify-between border-b border-stroke/60 pb-[2rem]">
@@ -67,8 +67,7 @@ export function InChargeTable() {
               <SelectGroup>
                 <SelectLabel>Actions</SelectLabel>
                 <SelectItem value="#">Remove</SelectItem>
-                <SelectItem value="#"></SelectItem>
-                <SelectItem value="#">Blueberry</SelectItem>
+                <SelectItem value="##">Add</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
