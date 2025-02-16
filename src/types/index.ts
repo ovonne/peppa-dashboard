@@ -22,6 +22,9 @@ export type InChargeType = {
   name: string;
   email: string;
   location: string;
+  status: string;
+  contact: string;
+  tenant_id: string;
 };
 
 export type TeacherType = {

@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Select,
   SelectContent,
@@ -18,11 +19,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+import { DateFilterInput } from "@/components/DateFilterInput/DateFilterInput";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { inCharge } from "@/store/InCharge";
+import { useInCharges } from "@/services/InChargeService/useInCharge";
 import {
   ChevronLeft,
   ChevronRight,
@@ -31,18 +33,14 @@ import {
   ListFilter,
 } from "lucide-react";
 
-import { DateFilterInput } from "@/components/DateFilterInput/DateFilterInput";
-
-const TableHeaderItems = [
-  "Name",
-  "Email",
-  "Contact",
-  "Associated Children",
-  "Date",
-  "Status",
-];
+const TableHeaderItems = ["Name", "Email", "Contact", "Location", "Status"];
 
 export function InChargeTable() {
+  const { data, error, isLoading } = useInCharges();
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading data.</p>;
+
   return (
     <div className="rounded-[1.2rem] bg-white p-[2.2rem]">
       <div className="flex justify-between border-b border-stroke/60 pb-[2rem]">
@@ -67,19 +65,19 @@ export function InChargeTable() {
               <SelectGroup>
                 <SelectLabel>Actions</SelectLabel>
                 <SelectItem value="#">Remove</SelectItem>
-                <SelectItem value="#"></SelectItem>
-                <SelectItem value="#">Blueberry</SelectItem>
+                <SelectItem value="#">Edit</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
         </div>
       </div>
+
       <section>
         <Table>
           <TableHeader>
             <TableRow className="h-[5.2rem] p-[1.7rem]">
-              <TableHead className="w-[100px]">
-                <Checkbox id="terms" />
+              <TableHead className="w-[50px]">
+                <Checkbox id="select-all" />
               </TableHead>
               {TableHeaderItems.map((header) => (
                 <TableHead key={header}>
@@ -93,16 +91,17 @@ export function InChargeTable() {
               ))}
             </TableRow>
           </TableHeader>
+
           <TableBody>
-            {inCharge.map((person, index) => (
-              <TableRow key={index} className="h-[4.8rem] border-b-0">
+            {data?.map((person: any, index: number) => (
+              <TableRow key={person.id} className="h-[4.8rem] border-b-0">
                 <TableCell>
                   <Checkbox id={`select-${index}`} />
                 </TableCell>
                 <TableCell>{person.name}</TableCell>
-                <TableCell className="">
+                <TableCell>
                   <div className="flex items-center gap-[0.5rem]">
-                    <span> {person.email}</span>
+                    <span>{person.email}</span>
                     <Copy
                       className="text-secundGray"
                       strokeWidth={2.3}
@@ -110,35 +109,20 @@ export function InChargeTable() {
                     />
                   </div>
                 </TableCell>
+                <TableCell>{person.contact ?? "N/A"}</TableCell>
+                <TableCell>{person.location}</TableCell>
                 <TableCell>
-                  <div className="flex items-center gap-[0.5rem]">
-                    <span> {person.contact}</span>
-                    <Copy
-                      className="text-secundGray"
-                      strokeWidth={2.3}
-                      size={16}
-                    />
-                  </div>
-                </TableCell>
-                <TableCell>{person.associatedChildren}</TableCell>
-                <TableCell>{person.date}</TableCell>
-                <TableCell>
-                  {person.status == "Active" ? (
-                    <Badge className="px-[1rem] py-[0.8rem]">
-                      {person.status}
-                    </Badge>
-                  ) : (
-                    <Badge
-                      className="px-[1rem] py-[0.8rem]"
-                      variant={"destructive"}
-                    >
-                      {person.status}
-                    </Badge>
-                  )}
+                  <Badge
+                    className="px-[1rem] py-[0.8rem]"
+                    variant={person.status ? "default" : "destructive"}
+                  >
+                    {person.status ? "Active" : "Inactive"}
+                  </Badge>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
+
           <TableFooter>
             <TableRow>
               <TableCell colSpan={TableHeaderItems.length + 1}>
@@ -151,11 +135,14 @@ export function InChargeTable() {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectGroup>
-                            <SelectLabel>Page</SelectLabel>
+                            <SelectLabel>Items per page</SelectLabel>
+                            <SelectItem value="10">10</SelectItem>
+                            <SelectItem value="20">20</SelectItem>
+                            <SelectItem value="50">50</SelectItem>
                           </SelectGroup>
                         </SelectContent>
                       </Select>
-                      <p className="text-Gray">Items for page</p>
+                      <p className="text-Gray">Items per page</p>
                     </div>
                     <p>10 - 1 of 200 items</p>
                   </div>
@@ -168,14 +155,17 @@ export function InChargeTable() {
                         <SelectContent>
                           <SelectGroup>
                             <SelectLabel>Page</SelectLabel>
+                            <SelectItem value="1">1</SelectItem>
+                            <SelectItem value="2">2</SelectItem>
+                            <SelectItem value="3">3</SelectItem>
                           </SelectGroup>
                         </SelectContent>
                       </Select>
                       <p className="text-[1.4rem] text-Gray">of 44 pages</p>
                     </div>
                     <div className="flex gap-[1rem] text-darkGray">
-                      <ChevronLeft size={18}></ChevronLeft>
-                      <ChevronRight size={18}></ChevronRight>
+                      <ChevronLeft size={18} />
+                      <ChevronRight size={18} />
                     </div>
                   </div>
                 </div>

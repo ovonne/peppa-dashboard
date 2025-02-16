@@ -1,13 +1,14 @@
 import api from "@/services/api";
 import { InChargeType } from "@/types";
 
-const ENDPOINT = "/encarregados/";
+const ENDPOINT = "/responsibles/";
 
 const inChargeService = {
   getAll: async (): Promise<InChargeType[]> => {
     try {
       const response = await api.get(ENDPOINT);
-      return response.data;
+      console.log(response.data.results);
+      return response.data.results;
     } catch (error: any) {
       throw new Error(
         error.response?.data?.error || "Failed to fetch In charge",

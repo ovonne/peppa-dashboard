@@ -5,9 +5,9 @@ const adminService = {
     try {
       const response = await api.get("/accounts/admin/", {});
 
-      return response.data[0];
+      return response.data.results[0];
     } catch (error: any) {
-      throw new Error(error.response.data.error);
+      throw new Error(error?.response?.data?.error);
     }
   },
 };
