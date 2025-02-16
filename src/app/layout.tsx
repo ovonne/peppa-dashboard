@@ -1,4 +1,8 @@
+"use client";
 import "./globals.css";
+
+import { QueryClient, QueryClientProvider } from "react-query";
+const queryClient = new QueryClient();
 
 export default function RootLayout({
   children,
@@ -7,7 +11,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="text-darkGray">
-      <body>{children}</body>
+      <QueryClientProvider client={queryClient}>
+        <body>{children}</body>
+      </QueryClientProvider>
     </html>
   );
 }

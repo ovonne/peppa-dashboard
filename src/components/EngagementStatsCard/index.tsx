@@ -84,7 +84,7 @@ export function EngagementStatsCard({
 }: EngagementStatsCardProps) {
   return (
     <div
-      className={`w-[${Width}] rounded-[1.2rem] bg-highlighted px-[1.5rem] py-[1.1rem] text-darkGray`}
+      className={`w-[${Width}] min-w-[34.4rem] rounded-[1.2rem] bg-highlighted px-[1.5rem] py-[1.1rem] text-darkGray`}
     >
       {children}
     </div>

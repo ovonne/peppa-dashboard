@@ -91,7 +91,7 @@ export function DashboardSummaryCard({
 }: DashboardSummaryCardProps) {
   return (
     <div
-      className={`rounded-[1.2rem] bg-white px-[1.5rem] py-[1.1rem] text-darkGray w-[${Width}]`}
+      className={`min-w-[34.4rem] rounded-[1.2rem] bg-white px-[1.5rem] py-[1.1rem] text-darkGray w-[${Width}]`}
     >
       {children}
     </div>

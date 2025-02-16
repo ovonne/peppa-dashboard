@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { CardContent, CardHeader } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { redirect } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 
 import {
@@ -48,13 +47,12 @@ export default function SignIn() {
     try {
       setIsLoading(true);
       await authService.login(data.email, data.password);
-      setIsLoading(false);
+
+      window.location.href = "/";
+
       toast.success("Login successful");
-      redirect("/");
-    } catch (error) {
-      toast.error("Error on login");
-      setIsLoading(false);
-    } finally {
+    } catch (error: any) {
+      toast.error(`${error}`);
       setIsLoading(false);
     }
   };

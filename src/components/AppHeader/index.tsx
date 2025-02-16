@@ -1,3 +1,4 @@
+"use client";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -6,6 +7,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { LoaderCircle } from "lucide-react";
+
+import { useAdmin } from "@/services/adminService/useAdmin";
 
 import Image from "next/image";
 
@@ -13,6 +17,8 @@ import { Bell, ChevronDown, Home } from "lucide-react";
 import { SidebarTrigger } from "../ui/sidebar";
 
 export function AppHeader() {
+  const { data, error, isLoading } = useAdmin();
+
   return (
     <div className="bg-white">
       <div className="flex justify-between px-[21px] py-[17.5px]">
@@ -26,7 +32,14 @@ export function AppHeader() {
             <DropdownMenuTrigger className="rounded-[0.8rem] bg-highlighted/10 px-[1.2rem] py-[0.6rem]">
               <div className="flex items-center gap-[2rem]">
                 <p className="text-[1.4rem] font-semibold text-highlighted">
-                  Adams Angelo John
+                  {isLoading ? (
+                    <LoaderCircle
+                      className="animate-spin text-highlighted"
+                      size={16}
+                    ></LoaderCircle>
+                  ) : (
+                    data?.name
+                  )}
                 </p>
                 <div>
                   <ChevronDown
@@ -37,12 +50,9 @@ export function AppHeader() {
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-[19rem]">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 

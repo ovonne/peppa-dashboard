@@ -13,8 +13,8 @@ const authService = {
       Cookies.set("token", token, { expires: 7, secure: true });
 
       return response.data;
-    } catch (error) {
-      throw new Error("Error on login");
+    } catch (error: any) {
+      throw new Error(error.response.data.error);
     }
   },
 
