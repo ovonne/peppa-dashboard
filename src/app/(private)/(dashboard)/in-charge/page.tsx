@@ -4,7 +4,7 @@ import {
   DashboardSummaryCardHeader,
   DashboardSummaryCardIcon,
   DashboardSummaryCardItem,
-} from "@/components/DashboardSummaryCard/Index";
+} from "@/components/DashboardSummaryCard";
 import { SelectFilterSummaryCard } from "@/components/DashboardSummaryCard/components/SelectFilterSummaryCard";
 import { UserPlus, UsersRound } from "lucide-react";
 import { AddInChargeModal } from "./components/AddInChargeModal";

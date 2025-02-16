@@ -1,7 +1,12 @@
 import {
   DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
 import Image from "next/image";
 
 import { Bell, ChevronDown, Home } from "lucide-react";
@@ -31,6 +36,14 @@ export function AppHeader() {
                 </div>
               </div>
             </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-[19rem]">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>Billing</DropdownMenuItem>
+              <DropdownMenuItem>Team</DropdownMenuItem>
+              <DropdownMenuItem>Subscription</DropdownMenuItem>
+            </DropdownMenuContent>
           </DropdownMenu>
 
           <div>

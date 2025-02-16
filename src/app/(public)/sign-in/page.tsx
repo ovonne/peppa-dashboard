@@ -3,6 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { CardContent, CardHeader } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { redirect } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
+
 import {
   Form,
   FormControl,
@@ -12,8 +15,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { authService } from "@/services/authService/authService";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { LoaderCircle } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import banner from "./assets/banner.svg";
@@ -27,6 +33,8 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export default function SignIn() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -36,12 +44,24 @@ export default function SignIn() {
     },
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  const onSubmit = async (data: FormData) => {
+    try {
+      setIsLoading(true);
+      await authService.login(data.email, data.password);
+      setIsLoading(false);
+      toast.success("Login successful");
+      redirect("/");
+    } catch (error) {
+      toast.error("Error on login");
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="flex">
+      <Toaster position="top-right" reverseOrder={false} />
       <div className="flex h-screen w-[50%] items-center justify-center">
         <div className="w-[36rem]">
           <CardHeader className="mb-[5.6rem]">
@@ -124,7 +144,15 @@ export default function SignIn() {
                   type="submit"
                   className="h-[4.4rem] w-full rounded-[0.8rem]"
                 >
-                  Login
+                  {isLoading ? (
+                    <LoaderCircle
+                      className="h-[2.4rem] w-[2.4rem] animate-spin text-white"
+                      strokeWidth={3}
+                      size={20}
+                    />
+                  ) : (
+                    "Login"
+                  )}
                 </Button>
               </form>
             </Form>

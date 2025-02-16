@@ -1,12 +1,9 @@
 import {
-  DashboardSummaryCard,
-  DashboardSummaryCardContent,
-  DashboardSummaryCardHeader,
-  DashboardSummaryCardIcon,
-  DashboardSummaryCardItem,
-} from "@/components/DashboardSummaryCard/Index";
-import { SelectFilterSummaryCard } from "@/components/DashboardSummaryCard/components/SelectFilterSummaryCard";
-import { UsersRound } from "lucide-react";
+  EngagementStatsCard,
+  EngagementStatsCardContent,
+  EngagementStatsCardHeader,
+  EngagementStatsCardItem,
+} from "@/components/EngagementStatsCard/";
 
 import { Button } from "@/components/ui/button";
 import { UsersTable } from "./components/UsersTable";
@@ -20,33 +17,30 @@ export default function InCharge() {
       </div>
       <div className="flex flex-auto gap-[2.5rem]">
         <div className="flex-1">
-          <DashboardSummaryCard Width="auto">
-            <DashboardSummaryCardHeader>
-              <div className="flex items-center gap-[1rem]">
-                <DashboardSummaryCardIcon icon={UsersRound} />
-              </div>
-              <SelectFilterSummaryCard />
-            </DashboardSummaryCardHeader>
-            <DashboardSummaryCardContent>
-              <DashboardSummaryCardItem
+          <EngagementStatsCard Width="auto">
+            <EngagementStatsCardHeader>
+              <div className="flex h-[3.5rem] items-center gap-[1rem]"></div>
+            </EngagementStatsCardHeader>
+            <EngagementStatsCardContent>
+              <EngagementStatsCardItem
                 title={"All in charge"}
                 value={"1,200"}
                 percentage={15.8}
               />
 
-              <DashboardSummaryCardItem
+              <EngagementStatsCardItem
                 title={"Active"}
                 value={"1,108"}
                 percentage={85}
               />
 
-              <DashboardSummaryCardItem
+              <EngagementStatsCardItem
                 title={"Inactive"}
                 value={"92"}
                 percentage={-75}
               />
-            </DashboardSummaryCardContent>
-          </DashboardSummaryCard>
+            </EngagementStatsCardContent>
+          </EngagementStatsCard>
         </div>
       </div>
       <div>

@@ -15,7 +15,7 @@ export function EngagementStatsCardIcon({
     >
       <Icon
         size={20}
-        className={`${!bg ? "text-white" : "text-highlighted"}`}
+        className={`${bg == "white/10" ? "text-white" : "text-highlighted"}`}
       ></Icon>
     </div>
   );
@@ -75,11 +75,17 @@ export function EngagementStatsCardItem({
 
 interface EngagementStatsCardProps {
   children: React.ReactNode;
+  Width?: string;
 }
 
-export function EngagementStatsCard({ children }: EngagementStatsCardProps) {
+export function EngagementStatsCard({
+  children,
+  Width = "34.4rem",
+}: EngagementStatsCardProps) {
   return (
-    <div className="w-[34.4rem] rounded-[1.2rem] bg-highlighted px-[1.5rem] py-[1.1rem] text-darkGray">
+    <div
+      className={`w-[${Width}] rounded-[1.2rem] bg-highlighted px-[1.5rem] py-[1.1rem] text-darkGray`}
+    >
       {children}
     </div>
   );

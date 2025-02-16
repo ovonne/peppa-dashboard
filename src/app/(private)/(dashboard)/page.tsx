@@ -1,4 +1,3 @@
-import { SelectFilterSummaryCard } from "@/components/DashboardSummaryCard/components/SelectFilterSummaryCard";
 import {
   DashboardSummaryCard,
   DashboardSummaryCardContent,
@@ -6,7 +5,8 @@ import {
   DashboardSummaryCardIcon,
   DashboardSummaryCardItem,
   DashboardSummaryCardTitle,
-} from "@/components/DashboardSummaryCard/Index";
+} from "@/components/DashboardSummaryCard";
+import { SelectFilterSummaryCard } from "@/components/DashboardSummaryCard/components/SelectFilterSummaryCard";
 import {
   EngagementStatsCard,
   EngagementStatsCardContent,
