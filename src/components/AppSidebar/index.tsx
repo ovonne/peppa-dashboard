@@ -16,9 +16,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Home, LogOut, Package, Settings, Shield, Users } from "lucide-react";
+import { LogOut } from "lucide-react";
 
 import { authService } from "@/services/authService/authService";
+import { menuItems } from "@/store/SidebarMenuItems";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -34,92 +35,35 @@ export function AppSidebar() {
             <Image className="object-cover" alt="logo" fill src={"/logo.svg"} />
           </div>
         </SidebarHeader>
+
         <SidebarContent className="mt-[1rem]">
           <SidebarGroup>
             <SidebarGroupContent className="p-[1rem]">
               <SidebarMenu>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Link href="/">
-                      <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
-                        <Home
-                          size={ICON_SIZE}
-                          strokeWidth={ICON_STROKE_WIDTH}
-                        />
-                      </SidebarMenuItem>
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent side="right">Home</TooltipContent>
-                </Tooltip>
-
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Link href="#">
-                      <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
-                        <Shield
-                          size={ICON_SIZE}
-                          strokeWidth={ICON_STROKE_WIDTH}
-                        />
-                      </SidebarMenuItem>
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent side="right">Security</TooltipContent>
-                </Tooltip>
-
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Link href="#">
-                      <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
-                        <Package
-                          size={ICON_SIZE}
-                          strokeWidth={ICON_STROKE_WIDTH}
-                        />
-                      </SidebarMenuItem>
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent side="right">Products</TooltipContent>
-                </Tooltip>
-
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Link href="#">
-                      <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
-                        <Users
-                          size={ICON_SIZE}
-                          strokeWidth={ICON_STROKE_WIDTH}
-                        />
-                      </SidebarMenuItem>
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent side="right">Users</TooltipContent>
-                </Tooltip>
-
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Link href="#">
-                      <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
-                        <Settings
-                          size={ICON_SIZE}
-                          strokeWidth={ICON_STROKE_WIDTH}
-                        />
-                      </SidebarMenuItem>
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent side="right">Settings</TooltipContent>
-                </Tooltip>
+                {menuItems.map(({ href, icon: Icon, label }) => (
+                  <Tooltip key={label}>
+                    <TooltipTrigger asChild>
+                      <Link href={href}>
+                        <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
+                          <Icon
+                            size={ICON_SIZE}
+                            strokeWidth={ICON_STROKE_WIDTH}
+                          />
+                        </SidebarMenuItem>
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent side="right">{label}</TooltipContent>
+                  </Tooltip>
+                ))}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
+
         <SidebarFooter className="p-[2rem]">
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link
-                onClick={() => {
-                  authService.logout();
-                }}
-                href="#"
-              >
+              <Link onClick={() => authService.logout()} href="#">
                 <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
                   <LogOut size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />
                 </SidebarMenuItem>

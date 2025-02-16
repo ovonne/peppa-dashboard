@@ -49,7 +49,7 @@ export function AppHeader() {
                 </div>
               </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-[19rem]">
+            <DropdownMenuContent className="w-[]">
               <DropdownMenuLabel>Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Profile</DropdownMenuItem>
