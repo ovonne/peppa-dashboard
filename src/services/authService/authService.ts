@@ -2,10 +2,10 @@ import api from "@/services/api";
 import Cookies from "js-cookie";
 
 const authService = {
-  login: async (username: string, password: string) => {
+  login: async (email: string, password: string) => {
     try {
       const response = await api.post("/accounts/admin/login/", {
-        username,
+        email,
         password,
       });
       const { token } = response.data;
