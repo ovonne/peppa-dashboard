@@ -43,8 +43,8 @@ export function AddInChargeModal() {
       setIsLoading(true);
       await inChargeService.create(data);
       toast.success("Add In Charge");
-    } catch (error) {
-      toast.error("Add In Charge");
+    } catch (error: any) {
+      toast.error(`${error.message}`);
     } finally {
       setIsLoading(false);
     }

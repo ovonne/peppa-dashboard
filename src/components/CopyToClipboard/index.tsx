@@ -1,5 +1,6 @@
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface CopyToClipboardProps {
   text: string;
@@ -14,7 +15,7 @@ export function CopyToClipboard({ text }: CopyToClipboardProps) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
-      console.error("Failed to copy:", error);
+      toast.error("Failed to copy:");
     }
   };
 

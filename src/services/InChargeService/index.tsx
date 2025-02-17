@@ -7,7 +7,6 @@ const inChargeService = {
   getAll: async (): Promise<InChargeType[]> => {
     try {
       const response = await api.get(ENDPOINT);
-      console.log(response.data.results);
       return response.data.results;
     } catch (error: any) {
       throw new Error(
@@ -32,8 +31,9 @@ const inChargeService = {
       const response = await api.post(ENDPOINT, data);
       return response.data;
     } catch (error: any) {
+      console.log(error.response);
       throw new Error(
-        error.response?.data?.error || "Failed to create in charge",
+        error.response?.data?.message || "Failed to create in charge",
       );
     }
   },

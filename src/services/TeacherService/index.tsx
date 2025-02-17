@@ -1,13 +1,13 @@
 import api from "@/services/api";
 import { CreateTeacherDTO, TeacherType } from "@/types";
 
-const ENDPOINT = "/professores/";
+const ENDPOINT = "/teachers/";
 
 const teacherService = {
   getAll: async (): Promise<TeacherType[]> => {
     try {
       const response = await api.get(ENDPOINT);
-      return response.data;
+      return response.data.results;
     } catch (error: any) {
       throw new Error(
         error.response?.data?.error || "Failed to fetch teachers",

@@ -6,15 +6,18 @@ import {
   EngagementStatsCardItem,
 } from "@/components/EngagementStatsCard/";
 
-import { Button } from "@/components/ui/button";
 import {
-  ChartNoAxesCombined,
-  NotebookPen,
-  Plus,
-  ShoppingBag,
-  StickyNote,
-} from "lucide-react";
+  DashboardSummaryCard,
+  DashboardSummaryCardContent,
+  DashboardSummaryCardHeader,
+  DashboardSummaryCardIcon,
+  DashboardSummaryCardItem,
+} from "@/components/DashboardSummaryCard";
+
+import { Button } from "@/components/ui/button";
+import { ChartNoAxesCombined, GraduationCap, Plus } from "lucide-react";
 import Link from "next/link";
+import { TeachersTable } from "./components/TeachersTable/teachersTable";
 
 export default function Teacher() {
   return (
@@ -30,72 +33,52 @@ export default function Teacher() {
         </Link>
       </div>
       <div className="flex flex-wrap gap-[2.5rem]">
-        <EngagementStatsCard>
-          <EngagementStatsCardHeader>
-            <div className="flex items-center gap-[1rem]">
-              <EngagementStatsCardIcon bg="white" icon={ShoppingBag} />
-            </div>
-          </EngagementStatsCardHeader>
-          <EngagementStatsCardContent>
-            <EngagementStatsCardItem
-              title={"All in products"}
-              value={"1,200"}
-              percentage={15.8}
-            />
-            <EngagementStatsCardItem
-              title={"Actives"}
-              value={"50"}
-              percentage={15.8}
-            />
-          </EngagementStatsCardContent>
-        </EngagementStatsCard>
-
-        <EngagementStatsCard>
-          <EngagementStatsCardHeader>
-            <div className="flex items-center gap-[1rem]">
-              <EngagementStatsCardIcon bg="white" icon={NotebookPen} />
-            </div>
-          </EngagementStatsCardHeader>
-          <EngagementStatsCardContent>
-            <EngagementStatsCardItem
-              title={"School supplies"}
-              value={"23"}
-              percentage={89}
-            />
-          </EngagementStatsCardContent>
-        </EngagementStatsCard>
-
-        <EngagementStatsCard>
-          <EngagementStatsCardHeader>
-            <div className="flex items-center gap-[1rem]">
-              <EngagementStatsCardIcon bg="white" icon={StickyNote} />
-            </div>
-          </EngagementStatsCardHeader>
-          <EngagementStatsCardContent>
-            <EngagementStatsCardItem
-              title={"Proof leaves"}
-              value={"23"}
-              percentage={68}
-            />
-          </EngagementStatsCardContent>
-        </EngagementStatsCard>
-
-        <EngagementStatsCard>
-          <EngagementStatsCardHeader>
-            <div className="flex items-center gap-[1rem]">
-              <EngagementStatsCardIcon bg="white" icon={ChartNoAxesCombined} />
-            </div>
-          </EngagementStatsCardHeader>
-          <EngagementStatsCardContent>
-            <EngagementStatsCardItem
-              title={"Exercise sheet"}
-              value={"200"}
-              percentage={15.8}
-            />
-          </EngagementStatsCardContent>
-        </EngagementStatsCard>
+        <div className="flex-1">
+          <EngagementStatsCard Width="auto">
+            <EngagementStatsCardHeader>
+              <div className="flex items-center gap-[1rem]">
+                <EngagementStatsCardIcon bg="white" icon={GraduationCap} />
+              </div>
+            </EngagementStatsCardHeader>
+            <EngagementStatsCardContent>
+              <EngagementStatsCardItem
+                title={"Total Teachers"}
+                value={"20"}
+                percentage={15.8}
+              />
+              <EngagementStatsCardItem
+                title={"Actives"}
+                value={"50"}
+                percentage={15.8}
+              />
+            </EngagementStatsCardContent>
+          </EngagementStatsCard>
+        </div>
+        <div className="flex-1">
+          <DashboardSummaryCard Width="auto">
+            <DashboardSummaryCardHeader>
+              <div className="flex items-center gap-[1rem]">
+                <DashboardSummaryCardIcon icon={ChartNoAxesCombined} />
+              </div>
+            </DashboardSummaryCardHeader>
+            <DashboardSummaryCardContent>
+              <DashboardSummaryCardItem
+                title={"Total payments"}
+                value={"200"}
+                percentage={15.8}
+              />
+              <DashboardSummaryCardItem
+                title={"Requests"}
+                value={"340"}
+                percentage={15.8}
+              />
+            </DashboardSummaryCardContent>
+          </DashboardSummaryCard>
+        </div>
       </div>
-      <div>{/* <InChargeTable></InChargeTable> */}</div>
+      <div>
+        <TeachersTable></TeachersTable>
+      </div>
     </div>
   );
 }

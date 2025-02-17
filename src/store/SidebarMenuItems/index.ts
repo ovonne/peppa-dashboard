@@ -12,6 +12,6 @@ export const menuItems = [
   { href: "/in-charge", icon: BriefcaseBusiness, label: "In charge" },
   { href: "/teachers", icon: GraduationCap, label: "Teacher" },
   { href: "/products", icon: Package, label: "Products" },
-  { href: "#", icon: Users, label: "Users" },
-  { href: "#", icon: Settings, label: "Settings" },
+  { href: "/users", icon: Users, label: "Users" },
+  { href: "/settings", icon: Settings, label: "Settings" },
 ];
