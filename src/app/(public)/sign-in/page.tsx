@@ -143,8 +143,8 @@ export default function SignIn() {
                 >
                   {isLoading ? (
                     <LoaderCircle
-                      className="h-[2.4rem] w-[2.4rem] animate-spin text-white"
-                      strokeWidth={3}
+                      className="!size-[2rem] h-[2.4rem] w-[2.4rem] animate-spin text-white"
+                      strokeWidth={2}
                       size={20}
                     />
                   ) : (

@@ -24,6 +24,7 @@ const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email address"),
   location: z.string().min(1, "Location is required"),
+  contact: z.string().min(1, "Contact is required"),
 });
 
 export function AddInChargeModal() {
@@ -103,6 +104,18 @@ export function AddInChargeModal() {
             {errors.location && (
               <p className="text-[1.2rem] text-medRed">
                 {String(errors.location.message)}
+              </p>
+            )}
+          </div>
+          <div>
+            <Input
+              {...register("contact")}
+              className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
+              placeholder="In charge contact"
+            />
+            {errors.location && (
+              <p className="text-[1.2rem] text-medRed">
+                {String(errors.contact?.message)}
               </p>
             )}
           </div>

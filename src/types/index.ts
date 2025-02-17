@@ -23,7 +23,10 @@ export type InChargeType = {
   email: string;
   location: string;
   status: string;
-  contact: string;
+  contact: {
+    first_number: string;
+    second_number: string;
+  };
   tenant_id: string;
 };
 

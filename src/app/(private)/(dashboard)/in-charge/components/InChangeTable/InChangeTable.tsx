@@ -24,7 +24,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useInCharges } from "@/services/InChargeService/useInCharge";
+import type { InChargeType } from "@/types";
 import {
   ChevronLeft,
   ChevronRight,
@@ -38,8 +40,9 @@ const TableHeaderItems = ["Name", "Email", "Contact", "Location", "Status"];
 export function InChargeTable() {
   const { data, error, isLoading } = useInCharges();
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error loading data.</p>;
+  if (isLoading)
+    return <Skeleton className="h-[40rem] w-full rounded-[1.2rem]" />;
+  if (error) return <div>Error:</div>;
 
   return (
     <div className="rounded-[1.2rem] bg-white p-[2.2rem]">
@@ -93,7 +96,7 @@ export function InChargeTable() {
           </TableHeader>
 
           <TableBody>
-            {data?.map((person: any, index: number) => (
+            {data?.map((person: InChargeType, index: number) => (
               <TableRow key={person.id} className="h-[4.8rem] border-b-0">
                 <TableCell>
                   <Checkbox id={`select-${index}`} />
@@ -109,7 +112,7 @@ export function InChargeTable() {
                     />
                   </div>
                 </TableCell>
-                <TableCell>{person.contact ?? "N/A"}</TableCell>
+                <TableCell>{person?.contact?.first_number ?? "N/A"}</TableCell>
                 <TableCell>{person.location}</TableCell>
                 <TableCell>
                   <Badge
