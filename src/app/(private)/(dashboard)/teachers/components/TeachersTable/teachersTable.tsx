@@ -1,4 +1,12 @@
 "use client";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 import { CopyToClipboard } from "@/components/CopyToClipboard";
 import { DateFilterInput } from "@/components/DateFilterInput/DateFilterInput";
@@ -26,8 +34,9 @@ const TableHeaderItems = [
   "Location",
   "Price/Hour",
   "Education Level",
-  "Status",
+
   "Actions",
+  "Status",
 ];
 
 export function TeachersTable() {
@@ -91,21 +100,26 @@ export function TeachersTable() {
                 <TableCell>{teacher.location}</TableCell>
                 <TableCell>{teacher.daily}</TableCell>
                 <TableCell>{teacher.education_level}</TableCell>
+
+                <TableCell>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>Actions</DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem>Select</DropdownMenuItem>
+                      <DropdownMenuItem>Edit</DropdownMenuItem>
+                      <DropdownMenuItem>Remove</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
                 <TableCell>
                   <Badge
                     className="px-[1rem] py-[0.8rem]"
-                    variant={
-                      teacher.status === "active" ? "default" : "destructive"
-                    }
+                    variant={teacher.status ? "default" : "destructive"}
                   >
-                    {teacher.status.charAt(0).toUpperCase() +
-                      teacher.status.slice(1)}
+                    {teacher.status ? "Active" : "Inactive"}
                   </Badge>
-                </TableCell>
-                <TableCell>
-                  <Button variant="outline" size="sm">
-                    Edit
-                  </Button>
                 </TableCell>
               </TableRow>
             ))}

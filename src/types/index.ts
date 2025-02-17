@@ -41,7 +41,7 @@ export type TeacherType = {
   daily: string;
   education_level: string;
   tenant_id: string;
-  status: string;
+  status: boolean;
   contact: number;
 };
 

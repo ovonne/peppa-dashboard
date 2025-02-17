@@ -7,6 +7,7 @@ const teacherService = {
   getAll: async (): Promise<TeacherType[]> => {
     try {
       const response = await api.get(ENDPOINT);
+      console.log(response.data);
       return response.data.results;
     } catch (error: any) {
       throw new Error(
