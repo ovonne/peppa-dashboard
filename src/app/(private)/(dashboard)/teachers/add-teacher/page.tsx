@@ -116,9 +116,9 @@ export default function AddTeacher() {
               </div>
             </div>
           </div>
-          <div>
+          <div className="border-b-[0.4rem] border-lightGray">
             <h2 className="text-[1.8rem] font-medium">About Me</h2>
-            <p className="text-[1.2rem] text-Gray">
+            <p className="mb-[1rem] text-[1.2rem] text-Gray">
               Degree in Pedagogy, graduated in Angola. He stands out for his
               experience in education, with more than 5 years of experience in
               education
@@ -153,6 +153,26 @@ export default function AddTeacher() {
               <div className="p-[1.2rem]">
                 <p className="text-[1.4rem] text-Gray">Dom</p>
                 <h2 className="text-[2rem] font-bold">22</h2>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h2 className="text-[1.8rem] font-medium">Available schedules</h2>
+            <div className="mt-[2rem] flex gap-[1rem]">
+              <div className="rounded-[0.8rem] border border-Gray p-[0.8rem] text-center">
+                <p className="text-[1.4rem] font-bold">12:00</p>
+              </div>
+              <div className="rounded-[0.8rem] border border-highlighted bg-highlighted p-[0.8rem] text-center text-white">
+                <p className="text-[1.4rem] font-bold">13:30</p>
+              </div>
+              <div className="rounded-[0.8rem] border border-Gray p-[0.8rem] text-center">
+                <p className="text-[1.4rem] font-bold">24:00</p>
+              </div>
+              <div className="rounded-[0.8rem] border border-Gray p-[0.8rem] text-center">
+                <p className="text-[1.4rem] font-bold">06:00</p>
+              </div>
+              <div className="rounded-[0.8rem] border border-Gray p-[0.8rem] text-center">
+                <p className="text-[1.4rem] font-bold">07:00</p>
               </div>
             </div>
           </div>

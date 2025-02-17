@@ -19,6 +19,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+import { CopyToClipboard } from "@/components/CopyToClipboard";
 import { DateFilterInput } from "@/components/DateFilterInput/DateFilterInput";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -30,7 +31,6 @@ import type { InChargeType } from "@/types";
 import {
   ChevronLeft,
   ChevronRight,
-  Copy,
   FilterIcon,
   ListFilter,
 } from "lucide-react";
@@ -105,14 +105,17 @@ export function InChargeTable() {
                 <TableCell>
                   <div className="flex items-center gap-[0.5rem]">
                     <span>{person.email}</span>
-                    <Copy
-                      className="text-secundGray"
-                      strokeWidth={2.3}
-                      size={16}
-                    />
+                    <CopyToClipboard text={person.email} />
                   </div>
                 </TableCell>
-                <TableCell>{person?.contact?.first_number ?? "N/A"}</TableCell>
+                <TableCell>
+                  <div className="flex items-center gap-[0.5rem]">
+                    <span>{person?.contact?.first_number ?? "N/A"}</span>
+                    {person?.contact?.first_number && (
+                      <CopyToClipboard text={person.contact.first_number} />
+                    )}
+                  </div>
+                </TableCell>
                 <TableCell>{person.location}</TableCell>
                 <TableCell>
                   <Badge
