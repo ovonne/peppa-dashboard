@@ -1,31 +1,30 @@
 import api from "@/services/api";
-import { CreateTeacherDTO, TeacherType } from "@/types";
+import { CreateProductDTO, ProductType } from "@/types";
 
-const ENDPOINT = "/teachers/";
+const ENDPOINT = "/products/";
 
-const teacherService = {
-  getAll: async (): Promise<TeacherType[]> => {
+const productService = {
+  getAll: async (): Promise<ProductType[]> => {
     try {
-      const response = await api.get(ENDPOINT + "?formate_daily=true");
-
+      const response = await api.get(ENDPOINT);
       return response.data;
     } catch (error: any) {
       throw new Error(
-        error.response?.data?.error || "Failed to fetch teachers",
+        error.response?.data?.error || "Failed to fetch products",
       );
     }
   },
 
-  getById: async (id: number): Promise<TeacherType> => {
+  getById: async (id: number): Promise<ProductType> => {
     try {
       const response = await api.get(`${ENDPOINT}${id}/`);
       return response.data;
     } catch (error: any) {
-      throw new Error(error.response?.data?.error || "Failed to fetch teacher");
+      throw new Error(error.response?.data?.error || "Failed to fetch product");
     }
   },
 
-  create: async (data: FormData): Promise<CreateTeacherDTO> => {
+  create: async (data: FormData): Promise<CreateProductDTO> => {
     try {
       const response = await api.post(ENDPOINT, data, {
         headers: {
@@ -35,35 +34,35 @@ const teacherService = {
       return response.data;
     } catch (error: any) {
       throw new Error(
-        error.response?.data?.error || "Failed to create teacher",
+        error.response?.data?.error || "Failed to create product",
       );
     }
   },
 
   update: async (
     id: number,
-    data: Partial<Omit<TeacherType, "id">>,
-  ): Promise<TeacherType> => {
+    data: Partial<Omit<ProductType, "id">>,
+  ): Promise<ProductType> => {
     try {
       const response = await api.put(`${ENDPOINT}${id}/`, data);
       return response.data;
     } catch (error: any) {
       throw new Error(
-        error.response?.data?.error || "Failed to update teacher",
+        error.response?.data?.error || "Failed to update product",
       );
     }
   },
 
   updatePartial: async (
     id: string,
-    data: Partial<Omit<TeacherType, "id">>,
-  ): Promise<TeacherType> => {
+    data: Partial<Omit<ProductType, "id">>,
+  ): Promise<ProductType> => {
     try {
       const response = await api.patch(`${ENDPOINT}${id}/`, data);
       return response.data;
     } catch (error: any) {
       throw new Error(
-        error.response?.data?.error || "Failed to partially update teacher",
+        error.response?.data?.error || "Failed to partially update product",
       );
     }
   },
@@ -73,10 +72,10 @@ const teacherService = {
       await api.delete(`${ENDPOINT}${id}/`);
     } catch (error: any) {
       throw new Error(
-        error.response?.data?.error || "Failed to delete teacher",
+        error.response?.data?.error || "Failed to delete product",
       );
     }
   },
 };
 
-export { teacherService };
+export { productService };

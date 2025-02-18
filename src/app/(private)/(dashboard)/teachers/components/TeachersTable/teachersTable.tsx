@@ -26,8 +26,10 @@ import { teacherService } from "@/services/TeacherService";
 import { useTeachers } from "@/services/TeacherService/useTeacher";
 import type { TeacherType } from "@/types";
 import { FilterIcon, ListFilter } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useQueryClient } from "react-query";
 
 const TableHeaderItems = [
   "Name",
@@ -43,6 +45,7 @@ const TableHeaderItems = [
 
 export function TeachersTable() {
   const { data, error, isLoading } = useTeachers();
+  const queryClient = useQueryClient();
   const [isLoadingRemoveAction, setIsLoadingRemoveAction] = useState(false);
 
   const removeTeacher = async (id: string) => {
@@ -50,6 +53,7 @@ export function TeachersTable() {
       setIsLoadingRemoveAction(true);
       await teacherService.delete(id);
       toast.success("Teacher removed successfully");
+      queryClient.invalidateQueries("teachers");
     } catch (error: any) {
       toast.error(`${error.message}`);
     } finally {
@@ -62,6 +66,7 @@ export function TeachersTable() {
       await teacherService.updatePartial(id, data);
 
       toast.success("Teacher state updates successfully");
+      queryClient.invalidateQueries("teachers");
     } catch (error: any) {
       toast.error(`${error.message}`);
     } finally {
@@ -118,7 +123,19 @@ export function TeachersTable() {
                 <TableCell>
                   <Checkbox id={`select-${index}`} />
                 </TableCell>
-                <TableCell>{teacher.name}</TableCell>
+                <TableCell>
+                  <div className="flex items-center gap-[1rem]">
+                    <div className="relative h-[3.9rem] w-[3.9rem] overflow-hidden rounded-[0.8rem] bg-lightGray">
+                      <Image
+                        src={teacher?.avatar_url}
+                        alt={"Image of: " + teacher.name}
+                        fill
+                        className="rounded-[1.2rem] object-cover"
+                      />
+                    </div>{" "}
+                    {teacher.name}
+                  </div>
+                </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-[0.5rem]">
                     <span>{teacher.email}</span>

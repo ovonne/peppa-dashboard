@@ -32,10 +32,10 @@ export type InChargeType = {
 
 export type TeacherType = {
   id: string;
-  avatar_url: string;
+
   name: string;
   email: string;
-  about: string;
+
   subject: string;
   location: string;
   daily: string;
@@ -43,6 +43,8 @@ export type TeacherType = {
   tenant_id: string;
   status: boolean;
   contact: string;
+  about: string;
+  avatar_url: string;
 };
 
 export type CreateTeacherDTO = Omit<
@@ -60,3 +62,18 @@ export type InstitutionType = {
 };
 
 export type CreateInstitutionDTO = Omit<InstitutionType, "id" | "tenant_id">;
+
+export interface ProductType {
+  id: string;
+  name: string;
+  price: string;
+  quantity: number;
+  payment_reference: string;
+  images: Record<string, any>;
+  category: string;
+  description: string;
+  date_created: string;
+}
+
+export interface CreateProductDTO
+  extends Omit<ProductType, "id" | "date_created"> {}

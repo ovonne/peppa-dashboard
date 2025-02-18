@@ -67,7 +67,7 @@ export default function AddTeacher() {
   });
 
   const [description, setDescription] = useState(
-    "Degree in Pedagogy, graduated in Angola. He stands out for his experience in education, with more than 5 years of experience in education",
+    "Degree in Pedagogy, graduated in Angola.",
   );
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,8 +93,13 @@ export default function AddTeacher() {
       formData.append("status", String(data.status));
       formData.append("about", description);
 
+      formData.append(
+        "schedules",
+        JSON.stringify([[{ start: "12:00", end: "13:00" }]]),
+      );
+
       if (image) {
-        formData.append("image", image);
+        formData.append("avatar", image);
       }
 
       await teacherService.create(formData);
@@ -337,6 +342,8 @@ export default function AddTeacher() {
 
               <div>
                 <Textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                   className="h-[16rem] rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
                   placeholder="Teacher description"
                 />
