@@ -6,6 +6,7 @@ import {
   EngagementStatsCardItem,
 } from "@/components/EngagementStatsCard/";
 import { Plus, School } from "lucide-react";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { InstitutionsTable } from "./components/InstitutionsTable";
@@ -15,10 +16,12 @@ export default function Institutions() {
     <div className="mt-[2rem] flex flex-col gap-[2.5rem] px-[2.5rem]">
       <div className="flex items-end justify-between">
         <h2 className="text-[1.6rem] font-medium">Tenants</h2>
-        <Button className="rounded-[0.8rem]">
-          <Plus className="!size-[2rem]"></Plus>
-          Add Tenants
-        </Button>
+        <Link href={"/institutions/add-institution"}>
+          <Button className="rounded-[0.8rem]">
+            <Plus className="!size-[2rem]"></Plus>
+            Add Tenants
+          </Button>
+        </Link>
       </div>
       <div className="flex flex-auto gap-[2.5rem]">
         <div className="flex-1">

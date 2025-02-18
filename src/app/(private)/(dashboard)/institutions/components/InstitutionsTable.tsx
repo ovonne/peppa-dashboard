@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 
 import { DateFilterInput } from "@/components/DateFilterInput/DateFilterInput";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useInstitutions } from "@/services/InstitutionService/useInstitution";
 
 const TableHeaderItems = [
@@ -44,7 +45,13 @@ const TableHeaderItems = [
 ];
 
 export function InstitutionsTable() {
-  const { data: institutions, isLoading } = useInstitutions();
+  const { data: institutions, error, isLoading } = useInstitutions();
+
+  console.log(institutions);
+
+  if (isLoading)
+    return <Skeleton className="h-[40rem] w-full rounded-[1.2rem]" />;
+  if (error) return <div>Error loading teachers.</div>;
 
   return (
     <div className="rounded-[1.2rem] bg-white p-[2.2rem]">

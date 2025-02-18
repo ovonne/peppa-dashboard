@@ -1,5 +1,6 @@
 import api from "@/services/api";
 import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 const authService = {
   login: async (email: string, password: string) => {
@@ -9,6 +10,10 @@ const authService = {
         password,
       });
       const { token } = response.data;
+
+      const decoded = jwtDecode(token);
+
+      console.log(decoded);
 
       Cookies.set("token", token, { expires: 7, secure: true });
 
