@@ -61,16 +61,14 @@ export default function AddTeacher() {
       location: "",
       daily: "",
       education_level: "",
-      contact: "+244 *** *** ***",
+      contact: "",
       status: true,
     },
   });
 
-  // const [name, setName] = useState(form.getValues("name"));
-  // const [daily, setDaily] = useState(form.getValues("daily"));
-  // const [description, setDescription] = useState(
-  //   "Degree in Pedagogy, graduated in Angola. He stands out for his experience in education, with more than 5 years of experience in education",
-  // );
+  const [description, setDescription] = useState(
+    "Degree in Pedagogy, graduated in Angola. He stands out for his experience in education, with more than 5 years of experience in education",
+  );
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -83,7 +81,23 @@ export default function AddTeacher() {
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
       setIsLoading(true);
-      await teacherService.create(data);
+
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("subject", data.subject);
+      formData.append("location", data.location);
+      formData.append("daily", data.daily);
+      formData.append("education_level", data.education_level);
+      formData.append("contact", data.contact);
+      formData.append("status", String(data.status));
+      formData.append("about", description);
+
+      if (image) {
+        formData.append("image", image);
+      }
+
+      await teacherService.create(formData);
 
       toast.success("Teacher created successfully");
     } catch (error: any) {

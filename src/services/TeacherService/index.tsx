@@ -25,7 +25,7 @@ const teacherService = {
     }
   },
 
-  create: async (data: CreateTeacherDTO): Promise<CreateTeacherDTO> => {
+  create: async (data: FormData): Promise<CreateTeacherDTO> => {
     try {
       const response = await api.post(ENDPOINT, data);
       return response.data;
