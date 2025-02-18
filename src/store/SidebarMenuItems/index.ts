@@ -4,7 +4,7 @@ import {
   Home,
   LockKeyholeOpen,
   Package,
-  Settings,
+  School,
   Users,
 } from "lucide-react";
 
@@ -15,5 +15,5 @@ export const menuItems = [
   { href: "/products", icon: Package, label: "Products" },
   { href: "/permissions", icon: LockKeyholeOpen, label: "Permissions" },
   { href: "/users", icon: Users, label: "Users" },
-  { href: "/settings", icon: Settings, label: "Settings" },
+  { href: "/institutions", icon: School, label: "Institutions" },
 ];

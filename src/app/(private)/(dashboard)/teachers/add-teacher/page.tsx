@@ -49,6 +49,8 @@ type FormData = z.infer<typeof formSchema>;
 
 export default function AddTeacher() {
   const [isLoading, setIsLoading] = useState(false);
+  const [image, setImage] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -63,6 +65,20 @@ export default function AddTeacher() {
       status: true,
     },
   });
+
+  // const [name, setName] = useState(form.getValues("name"));
+  // const [daily, setDaily] = useState(form.getValues("daily"));
+  // const [description, setDescription] = useState(
+  //   "Degree in Pedagogy, graduated in Angola. He stands out for his experience in education, with more than 5 years of experience in education",
+  // );
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setImage(file);
+      setPreview(URL.createObjectURL(file));
+    }
+  };
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
@@ -100,7 +116,7 @@ export default function AddTeacher() {
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
-                  className="space-y-4"
+                  className="space-y-[2.2rem]"
                 >
                   <FormField
                     control={form.control}
@@ -249,39 +265,62 @@ export default function AddTeacher() {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full p-[1rem]">
-                    {isLoading ? (
-                      <LoaderCircle
-                        className="!size-[2rem] h-[2.4rem] w-[2.4rem] animate-spin text-white"
-                        strokeWidth={2}
-                        size={20}
-                      />
-                    ) : (
-                      " Save"
-                    )}
-                  </Button>
+                  <div className="py-[3rem]">
+                    <Button
+                      type="submit"
+                      className="w-full rounded-[0.8rem] p-[1rem]"
+                    >
+                      {isLoading ? (
+                        <LoaderCircle
+                          className="!size-[2rem] h-[2.4rem] w-[2.4rem] animate-spin text-white"
+                          strokeWidth={2}
+                          size={20}
+                        />
+                      ) : (
+                        " Save Info"
+                      )}
+                    </Button>
+                  </div>
                 </form>
               </Form>
             </div>
             <div className="space-y-[2rem]">
-              <div className="flex h-[30rem] w-[37rem] items-center justify-center rounded-[1.2rem] border border-stroke bg-lightGray">
-                <div className="text-center">
-                  <ImageIcon
-                    size={64}
-                    className="m-auto text-highlighted"
-                  ></ImageIcon>
-                  <div className="mb-[1.3rem] mt-[2.4rem] flex justify-center gap-[0.8rem] font-medium text-highlighted">
-                    <CloudUpload></CloudUpload>
-                    <p className="text-[1.6rem]">Import Image</p>
+              <div className="relative flex h-[30rem] w-[37rem] items-center justify-center rounded-[1.2rem] border border-stroke bg-lightGray">
+                {preview ? (
+                  <div>
+                    <div className="mb-[1.3rem] mt-[2.4rem] flex justify-center gap-[0.8rem] font-medium text-highlighted">
+                      <ImageIcon
+                        size={64}
+                        className="m-auto text-highlighted"
+                      />
+                    </div>
+                    <p className="text-[1.6rem] font-medium text-highlighted">
+                      File selected
+                    </p>
                   </div>
-                  <p className="text-[1.4rem] text-Gray">
-                    Load an image to your product
-                  </p>
-                  <p className="text-[1.4rem] text-Gray">
-                    JPEG format, PNG Size 600x600 (1: 1)
-                  </p>
-                </div>
+                ) : (
+                  <div className="text-center">
+                    <ImageIcon size={64} className="m-auto text-highlighted" />
+                    <div className="mb-[1.3rem] mt-[2.4rem] flex justify-center gap-[0.8rem] font-medium text-highlighted">
+                      <CloudUpload />
+                      <p className="text-[1.6rem]">Import Image</p>
+                    </div>
+                    <p className="text-[1.4rem] text-Gray">
+                      Load an image to your profile
+                    </p>
+                    <p className="text-[1.4rem] text-Gray">
+                      JPEG, PNG - 600x600
+                    </p>
+                  </div>
+                )}
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="absolute inset-0 cursor-pointer opacity-0"
+                  onChange={handleImageChange}
+                />
               </div>
+
               <div>
                 <Textarea
                   className="h-[16rem] rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
@@ -295,22 +334,31 @@ export default function AddTeacher() {
           <h2 className="text-center text-[1.6rem] font-medium">Previews</h2>
           <div className="rounded-[1.2rem] shadow-lg shadow-lightGray">
             <div className="relative h-[24rem] w-full overflow-hidden">
-              <Image
-                fill
-                src={"/teacher.jpg"}
-                alt="teacher image"
-                className="rounded-[1.2rem] object-cover"
-              ></Image>
+              {preview ? (
+                <Image
+                  src={preview}
+                  alt="Preview"
+                  layout="fill"
+                  className="rounded-[1.2rem] object-cover"
+                />
+              ) : (
+                <div></div>
+              )}
             </div>
             <div className="px-[1rem] py-[1.5rem]">
               <div className="flex justify-between">
-                <p className="text-[1.4rem] font-bold">Antonio Gabriel</p>
+                <p className="text-[1.4rem] font-bold">
+                  {form.getValues("name")}
+                </p>
                 <p className="text-[1.4rem] font-medium text-highlighted">
-                  KZ5,000 <span className="text-[1rem] text-Gray">/hora</span>
+                  KZ{form.getValues("daily")}
+                  <span className="text-[1rem] text-Gray">/hora</span>
                 </p>
               </div>
               <div className="flex justify-between">
-                <p className="text-[1.4rem] text-Gray">license</p>
+                <p className="text-[1.4rem] text-Gray">
+                  {form.getValues("education_level")}
+                </p>
                 <p></p>
               </div>
             </div>

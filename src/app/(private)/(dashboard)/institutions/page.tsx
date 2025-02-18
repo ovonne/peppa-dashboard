@@ -5,20 +5,19 @@ import {
   EngagementStatsCardIcon,
   EngagementStatsCardItem,
 } from "@/components/EngagementStatsCard/";
-
-import { Plus, User } from "lucide-react";
+import { Plus, School } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { UsersTable } from "./components/UsersTable";
+import { InstitutionsTable } from "./components/InstitutionsTable";
 
-export default function InCharge() {
+export default function Institutions() {
   return (
     <div className="mt-[2rem] flex flex-col gap-[2.5rem] px-[2.5rem]">
       <div className="flex items-end justify-between">
-        <h2 className="text-[1.6rem] font-medium">Users</h2>
+        <h2 className="text-[1.6rem] font-medium">Tenants</h2>
         <Button className="rounded-[0.8rem]">
           <Plus className="!size-[2rem]"></Plus>
-          Add User
+          Add Tenants
         </Button>
       </div>
       <div className="flex flex-auto gap-[2.5rem]">
@@ -28,13 +27,13 @@ export default function InCharge() {
               <div className="flex h-[3.5rem] items-center gap-[1rem]">
                 <EngagementStatsCardIcon
                   bg="white"
-                  icon={User}
+                  icon={School}
                 ></EngagementStatsCardIcon>
               </div>
             </EngagementStatsCardHeader>
             <EngagementStatsCardContent>
               <EngagementStatsCardItem
-                title={"All in charge"}
+                title={"All in Tenants"}
                 value={"1,200"}
                 percentage={15.8}
               />
@@ -46,7 +45,7 @@ export default function InCharge() {
               />
 
               <EngagementStatsCardItem
-                title={"Inactive"}
+                title={"Pending"}
                 value={"92"}
                 percentage={-75}
               />
@@ -55,7 +54,7 @@ export default function InCharge() {
         </div>
       </div>
       <div>
-        <UsersTable></UsersTable>
+        <InstitutionsTable></InstitutionsTable>
       </div>
     </div>
   );

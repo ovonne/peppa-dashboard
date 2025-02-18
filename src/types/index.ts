@@ -49,3 +49,14 @@ export type CreateTeacherDTO = Omit<
   TeacherType,
   "id" | "avatar_url" | "about" | "tenant_id"
 >;
+
+export type InstitutionType = {
+  id: string;
+  tenant_id: string;
+  code: string;
+  name: string;
+  location: string;
+  contact: number;
+};
+
+export type CreateInstitutionDTO = Omit<InstitutionType, "id" | "tenant_id">;
