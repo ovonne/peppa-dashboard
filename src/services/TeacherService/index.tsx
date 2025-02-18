@@ -25,7 +25,7 @@ const teacherService = {
     }
   },
 
-  create: async (data: Omit<TeacherType, "id">): Promise<CreateTeacherDTO> => {
+  create: async (data: CreateTeacherDTO): Promise<CreateTeacherDTO> => {
     try {
       const response = await api.post(ENDPOINT, data);
       return response.data;
@@ -50,7 +50,21 @@ const teacherService = {
     }
   },
 
-  delete: async (id: number): Promise<void> => {
+  updatePartial: async (
+    id: string,
+    data: Partial<Omit<TeacherType, "id">>,
+  ): Promise<TeacherType> => {
+    try {
+      const response = await api.patch(`${ENDPOINT}${id}/`, data);
+      return response.data;
+    } catch (error: any) {
+      throw new Error(
+        error.response?.data?.error || "Failed to partially update teacher",
+      );
+    }
+  },
+
+  delete: async (id: string): Promise<void> => {
     try {
       await api.delete(`${ENDPOINT}${id}/`);
     } catch (error: any) {

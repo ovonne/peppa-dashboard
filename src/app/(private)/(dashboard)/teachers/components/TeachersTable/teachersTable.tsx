@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { CopyToClipboard } from "@/components/CopyToClipboard";
-import { DateFilterInput } from "@/components/DateFilterInput/DateFilterInput";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -23,9 +22,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { teacherService } from "@/services/TeacherService";
 import { useTeachers } from "@/services/TeacherService/useTeacher";
 import type { TeacherType } from "@/types";
 import { FilterIcon, ListFilter } from "lucide-react";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const TableHeaderItems = [
   "Name",
@@ -41,6 +43,30 @@ const TableHeaderItems = [
 
 export function TeachersTable() {
   const { data, error, isLoading } = useTeachers();
+  const [isLoadingRemoveAction, setIsLoadingRemoveAction] = useState(false);
+
+  const removeTeacher = async (id: string) => {
+    try {
+      setIsLoadingRemoveAction(true);
+      await teacherService.delete(id);
+      toast.success("Teacher removed successfully");
+    } catch (error: any) {
+      toast.error(`${error.message}`);
+    } finally {
+      setIsLoadingRemoveAction(false);
+    }
+  };
+
+  const changeTeacherState = async (id: string, data: { status: boolean }) => {
+    try {
+      await teacherService.updatePartial(id, data);
+
+      toast.success("Teacher state updates successfully");
+    } catch (error: any) {
+      toast.error(`${error.message}`);
+    } finally {
+    }
+  };
 
   if (isLoading)
     return <Skeleton className="h-[40rem] w-full rounded-[1.2rem]" />;
@@ -51,7 +77,11 @@ export function TeachersTable() {
       <div className="flex justify-between border-b border-stroke/60 pb-[2rem]">
         <h2 className="text-[1.6rem] font-medium">Teachers</h2>
         <div className="flex h-[2.9rem] gap-[0.7rem]">
-          <Input type="search" placeholder="Search" />
+          <Input
+            type="search"
+            className="!text-[1.4rem]"
+            placeholder="Search"
+          />
           <Button
             variant="outline"
             className="rounded-[0.4rem] border-darkGray"
@@ -59,7 +89,6 @@ export function TeachersTable() {
             <FilterIcon className="h-[2rem] w-[2rem] text-darkGray" />
             <span>Filter</span>
           </Button>
-          <DateFilterInput />
         </div>
       </div>
 
@@ -108,8 +137,22 @@ export function TeachersTable() {
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>Select</DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() =>
+                          changeTeacherState(teacher.id, {
+                            status: !teacher.status,
+                          })
+                        }
+                      >
+                        change status
+                      </DropdownMenuItem>
                       <DropdownMenuItem>Edit</DropdownMenuItem>
-                      <DropdownMenuItem>Remove</DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => removeTeacher(teacher.id)}
+                        disabled={isLoadingRemoveAction}
+                      >
+                        {isLoadingRemoveAction ? "Removing..." : "Remove"}
+                      </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </TableCell>

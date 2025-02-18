@@ -42,7 +42,7 @@ export type TeacherType = {
   education_level: string;
   tenant_id: string;
   status: boolean;
-  contact: number;
+  contact: string;
 };
 
 export type CreateTeacherDTO = Omit<

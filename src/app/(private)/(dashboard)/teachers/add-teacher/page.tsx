@@ -1,11 +1,82 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Calendar, CloudUpload, Image as ImageIcon } from "lucide-react";
+import { teacherService } from "@/services/TeacherService";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Calendar,
+  CloudUpload,
+  Image as ImageIcon,
+  LoaderCircle,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { SubmitHandler, useForm } from "react-hook-form";
+
+import { z } from "zod";
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import { useState } from "react";
+import toast from "react-hot-toast";
+
+const formSchema = z.object({
+  name: z.string().min(2, "Name must have at least 2 characters"),
+  email: z.string().email("Invalid email"),
+  subject: z.string().min(3, "Subject is too short"),
+  location: z.string().min(2, "Location is too short"),
+  daily: z.string().min(1, "This field is required"),
+  education_level: z.string().min(2, "Invalid education level"),
+  contact: z.string().min(2, "Contact must be a valid number"),
+  status: z.boolean(),
+});
+
+type FormData = z.infer<typeof formSchema>;
+
 export default function AddTeacher() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      location: "",
+      daily: "",
+      education_level: "",
+      contact: "+244 *** *** ***",
+      status: true,
+    },
+  });
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      setIsLoading(true);
+      await teacherService.create(data);
+
+      toast.success("Teacher created successfully");
+    } catch (error: any) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="mt-[2rem] flex flex-col gap-[2.5rem] px-[2.5rem]">
       <div className="flex items-end justify-between">
@@ -26,43 +97,171 @@ export default function AddTeacher() {
         <div className="rounded-[1.2rem] bg-white px-[4.2rem] py-[3.1rem]">
           <div className="flex gap-[5rem]">
             <div className="flex max-w-[40rem] flex-col gap-[2.4rem]">
-              <Input
-                className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
-                placeholder="First name"
-              ></Input>
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-4"
+                >
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
+                            placeholder="First name"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-              <Input
-                className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
-                placeholder="Last name"
-              ></Input>
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
+                            placeholder="Email"
+                            type="email"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-              <Input
-                className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
-                placeholder="Email Address"
-              ></Input>
+                  <FormField
+                    control={form.control}
+                    name="subject"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
+                            placeholder="Subject"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-              <Input
-                className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
-                placeholder="Phone Number"
-              ></Input>
+                  <FormField
+                    control={form.control}
+                    name="location"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
+                            placeholder="Location"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-              <Input
-                className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
-                placeholder="Location"
-              ></Input>
+                  <FormField
+                    control={form.control}
+                    name="education_level"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
+                            placeholder="Education Level"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-              <div className="flex gap-[1rem]">
-                <Input
-                  itemType="number"
-                  className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
-                  placeholder="Price per hour"
-                ></Input>
-                <Input
-                  itemType="number"
-                  className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
-                  placeholder="Level of teaching"
-                ></Input>
-              </div>
+                  <FormField
+                    control={form.control}
+                    name="contact"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
+                            placeholder="Contact"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className="flex gap-[2rem]">
+                    <FormField
+                      control={form.control}
+                      name="daily"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <Input
+                              className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
+                              placeholder="Daily"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="status"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <Select
+                              onValueChange={(value) =>
+                                field.onChange(value === "true")
+                              }
+                              defaultValue={String(field.value)}
+                            >
+                              <SelectTrigger className="rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium">
+                                <SelectValue placeholder="Select state" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="true">Active</SelectItem>
+                                <SelectItem value="false">Inactive</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <Button type="submit" className="w-full p-[1rem]">
+                    {isLoading ? (
+                      <LoaderCircle
+                        className="!size-[2rem] h-[2.4rem] w-[2.4rem] animate-spin text-white"
+                        strokeWidth={2}
+                        size={20}
+                      />
+                    ) : (
+                      " Save"
+                    )}
+                  </Button>
+                </form>
+              </Form>
             </div>
             <div className="space-y-[2rem]">
               <div className="flex h-[30rem] w-[37rem] items-center justify-center rounded-[1.2rem] border border-stroke bg-lightGray">
@@ -166,13 +365,7 @@ export default function AddTeacher() {
                 <p className="text-[1.4rem] font-bold">13:30</p>
               </div>
               <div className="rounded-[0.8rem] border border-Gray p-[0.8rem] text-center">
-                <p className="text-[1.4rem] font-bold">24:00</p>
-              </div>
-              <div className="rounded-[0.8rem] border border-Gray p-[0.8rem] text-center">
-                <p className="text-[1.4rem] font-bold">06:00</p>
-              </div>
-              <div className="rounded-[0.8rem] border border-Gray p-[0.8rem] text-center">
-                <p className="text-[1.4rem] font-bold">07:00</p>
+                <p className="text-[1.4rem] font-bold">14:00</p>
               </div>
             </div>
           </div>

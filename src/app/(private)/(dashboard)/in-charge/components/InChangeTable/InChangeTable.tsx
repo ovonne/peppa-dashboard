@@ -1,6 +1,14 @@
 "use client";
 
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
   Select,
   SelectContent,
   SelectGroup,
@@ -20,7 +28,6 @@ import {
 } from "@/components/ui/table";
 
 import { CopyToClipboard } from "@/components/CopyToClipboard";
-import { DateFilterInput } from "@/components/DateFilterInput/DateFilterInput";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -49,7 +56,11 @@ export function InChargeTable() {
       <div className="flex justify-between border-b border-stroke/60 pb-[2rem]">
         <h2 className="text-[1.6rem] font-medium">In Charge</h2>
         <div className="flex h-[2.9rem] gap-[0.7rem]">
-          <Input type="search" placeholder="Search" />
+          <Input
+            type="search"
+            className="!text-[1.4rem]"
+            placeholder="Search"
+          />
           <Button
             variant="outline"
             className="rounded-[0.4rem] border-darkGray"
@@ -57,21 +68,19 @@ export function InChargeTable() {
             <FilterIcon className="h-[2rem] w-[2rem] text-darkGray" />
             <span>Filter</span>
           </Button>
-          <DateFilterInput />
-          <Select>
-            <SelectTrigger className="w-[180px] border-darkGray">
-              <p className="text-[1.2rem]">
-                <SelectValue placeholder="Actions" />
-              </p>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Actions</SelectLabel>
-                <SelectItem value="#">Remove</SelectItem>
-                <SelectItem value="#">Edit</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger className="rounded-[0.6rem] border px-[2rem]">
+              Actions
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Remove</DropdownMenuItem>
+              <DropdownMenuItem>Disable</DropdownMenuItem>
+              <DropdownMenuItem>Edit</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
