@@ -17,6 +17,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -87,8 +96,8 @@ export function UsersTable() {
                   <Checkbox id={`select-${index}`} />
                 </TableCell>
                 <TableCell>
-                  <div className="flex items-center gap-[1rem]">
-                    <div className="flex h-[4.4rem] w-[4.4rem] items-center justify-center rounded-[0.8rem] bg-lightGray">
+                  <div className="flex items-center gap-[2rem]">
+                    <div className="flex h-[4.4rem] w-[4.4rem] items-center justify-center rounded-[1.2rem] bg-lightGray">
                       <p className="text-[1.6rem] font-medium text-highlighted">{`${getInitials(`${user.name}`)}`}</p>
                     </div>
                     <p>{user.name}</p>
@@ -131,10 +140,19 @@ export function UsersTable() {
                   )}
                 </TableCell>
                 <TableCell>
-                  <EllipsisVertical
-                    className="m-auto text-left"
-                    size={20}
-                  ></EllipsisVertical>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="m-auto rounded-[0.3rem] text-left font-medium text-darkGray">
+                      <EllipsisVertical size={20}></EllipsisVertical>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem>Details</DropdownMenuItem>
+                      <DropdownMenuItem>Edit</DropdownMenuItem>
+                      <DropdownMenuItem>Remove</DropdownMenuItem>
+                      <DropdownMenuItem>Disable</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </TableCell>
               </TableRow>
             ))}

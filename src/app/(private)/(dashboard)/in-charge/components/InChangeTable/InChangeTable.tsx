@@ -42,6 +42,7 @@ import {
   FilterIcon,
   ListFilter,
 } from "lucide-react";
+import Link from "next/link";
 
 const TableHeaderItems = [
   "Name",
@@ -149,7 +150,11 @@ export function InChargeTable() {
                     <DropdownMenuContent>
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem>Details</DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Link href={`/in-charge/details/${person.id}`}>
+                          Details
+                        </Link>
+                      </DropdownMenuItem>
                       <DropdownMenuItem>Edit</DropdownMenuItem>
                       <DropdownMenuItem>Remove</DropdownMenuItem>
                       <DropdownMenuItem>Disable</DropdownMenuItem>

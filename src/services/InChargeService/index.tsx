@@ -15,7 +15,7 @@ const inChargeService = {
     }
   },
 
-  getById: async (id: number): Promise<InChargeType> => {
+  getById: async (id: string): Promise<InChargeType> => {
     try {
       const response = await api.get(`${ENDPOINT}${id}/`);
       return response.data;

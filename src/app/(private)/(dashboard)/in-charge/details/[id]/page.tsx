@@ -1,3 +1,4 @@
+"use client";
 import {
   DashboardSummaryCard,
   DashboardSummaryCardContent,
@@ -15,15 +16,31 @@ import {
   UserRound,
   UsersRound,
 } from "lucide-react";
-import React from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React, { useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useInChargeDetails } from "@/services/InChargeService/useInCharge";
 import { InChargeTable } from "../../components/InChangeTable/InChangeTable";
 
 interface RequestItemProps {}
 
 const InChargeDetails: React.FC = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const id = pathname.split("/").pop();
+
+  const [routeInfo, setRouteInfo] = useState({
+    currentId: id,
+    fullPath: pathname,
+    queryParams: Object.fromEntries(searchParams.entries()),
+  });
+
+  const { data: inCharge, error, isLoading } = useInChargeDetails(id as string);
+
   return (
     <div className="mt-[2rem] flex flex-col gap-[2.5rem] px-[2.5rem]">
       <div className="flex items-end justify-between">
@@ -48,18 +65,24 @@ const InChargeDetails: React.FC = () => {
                 <DashboardSummaryCardIcon icon={UsersRound} />
                 <div>
                   <h1 className="text-[1.4rem] font-medium text-Gray">
-                    Antonio Gabriel
+                    {inCharge?.name}
                   </h1>
                   <p className="text-[1.2rem]">Last request 12 Sep 2025</p>
                 </div>
               </div>
-              <Badge className="py-[0.6rem]">Active</Badge>
+              {inCharge?.status ? (
+                <Badge className="py-[0.6rem]">Active</Badge>
+              ) : (
+                <Badge variant={"destructive"} className="py-[0.6rem]">
+                  Inactive
+                </Badge>
+              )}
             </DashboardSummaryCardHeader>
             <DashboardSummaryCardContent>
               <DashboardSummaryCardItem
                 text_is_med
                 title={"Telephone"}
-                value={"+24494727364"}
+                value={("+244 - " + inCharge?.contact.first_number) as string}
               />
             </DashboardSummaryCardContent>
           </DashboardSummaryCard>
@@ -75,7 +98,7 @@ const InChargeDetails: React.FC = () => {
               <DashboardSummaryCardItem
                 text_is_med
                 title={"Address"}
-                value={"London, USA"}
+                value={inCharge?.location as string}
               />
 
               <DashboardSummaryCardItem

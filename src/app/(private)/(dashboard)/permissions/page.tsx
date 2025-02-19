@@ -32,6 +32,7 @@ import { EllipsisVertical, Plus, Search } from "lucide-react";
 import Link from "next/link";
 
 import { permissions } from "@/store/pe";
+import { getInitials } from "@/utils/getInitials";
 import { ChevronLeft, ChevronRight, ListFilter } from "lucide-react";
 
 const TableHeaderItems = ["Name", "Permissions", "Access group", "Actions"];
@@ -105,7 +106,14 @@ export default function Permissions() {
                 {filteredPermissions.map((permission, index) => (
                   <TableRow key={index} className="h-[4.8rem] border-b-0">
                     <TableCell>{}</TableCell>
-                    <TableCell>{permission.name}</TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-[2rem]">
+                        <div className="flex h-[4.4rem] w-[4.4rem] items-center justify-center rounded-[1.2rem] bg-lightGray">
+                          <p className="text-[1.6rem] font-medium text-highlighted">{`${getInitials(`${permission.name}`)}`}</p>
+                        </div>
+                        <p>{permission.name}</p>
+                      </div>
+                    </TableCell>
                     <TableCell className="">
                       <div className="flex items-center gap-[0.5rem]">
                         <span> {permission.permission}</span>
