@@ -25,7 +25,7 @@ import {
 import { teacherService } from "@/services/TeacherService";
 import { useTeachers } from "@/services/TeacherService/useTeacher";
 import type { TeacherType } from "@/types";
-import { FilterIcon, ListFilter } from "lucide-react";
+import { EllipsisVertical, FilterIcon, ListFilter } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -38,9 +38,8 @@ const TableHeaderItems = [
   "Location",
   "Price/Hour",
   "Education Level",
-
-  "Actions",
   "Status",
+  "Actions",
 ];
 
 export function TeachersTable() {
@@ -146,10 +145,19 @@ export function TeachersTable() {
                 <TableCell>{teacher.location}</TableCell>
                 <TableCell>{teacher.daily}</TableCell>
                 <TableCell>{teacher.education_level}</TableCell>
-
+                <TableCell>
+                  <Badge
+                    className="px-[1rem] py-[0.8rem]"
+                    variant={teacher.status ? "default" : "destructive"}
+                  >
+                    {teacher.status ? "Active" : "Inactive"}
+                  </Badge>
+                </TableCell>
                 <TableCell>
                   <DropdownMenu>
-                    <DropdownMenuTrigger>Actions</DropdownMenuTrigger>
+                    <DropdownMenuTrigger>
+                      <EllipsisVertical size={20}></EllipsisVertical>
+                    </DropdownMenuTrigger>
                     <DropdownMenuContent>
                       <DropdownMenuLabel>Actions</DropdownMenuLabel>
                       <DropdownMenuSeparator />
@@ -172,14 +180,6 @@ export function TeachersTable() {
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
-                </TableCell>
-                <TableCell>
-                  <Badge
-                    className="px-[1rem] py-[0.8rem]"
-                    variant={teacher.status ? "default" : "destructive"}
-                  >
-                    {teacher.status ? "Active" : "Inactive"}
-                  </Badge>
                 </TableCell>
               </TableRow>
             ))}

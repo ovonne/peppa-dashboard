@@ -15,6 +15,7 @@ import {
   StickyNote,
 } from "lucide-react";
 import Link from "next/link";
+import { ProductTable } from "./components/ProductTable";
 
 export default function InCharge() {
   return (
@@ -95,7 +96,9 @@ export default function InCharge() {
           </EngagementStatsCardContent>
         </EngagementStatsCard>
       </div>
-      <div>{/* <InChargeTable></InChargeTable> */}</div>
+      <div>
+        <ProductTable></ProductTable>
+      </div>
     </div>
   );
 }

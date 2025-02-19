@@ -18,11 +18,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { inCharge } from "@/store/InCharge";
 import {
   ChevronLeft,
   ChevronRight,
@@ -35,19 +33,12 @@ import { DateFilterInput } from "@/components/DateFilterInput/DateFilterInput";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useInstitutions } from "@/services/InstitutionService/useInstitution";
 
-const TableHeaderItems = [
-  "Name",
-  "Email",
-  "Contact",
-  "Associated Children",
-  "Date",
-  "Status",
-];
+const TableHeaderItems = ["Name of the organization", "Location", "Status"];
 
 export function InstitutionsTable() {
-  const { data: institutions, error, isLoading } = useInstitutions();
+  const { data, error, isLoading } = useInstitutions();
 
-  console.log(institutions);
+  console.log(data);
 
   if (isLoading)
     return <Skeleton className="h-[40rem] w-full rounded-[1.2rem]" />;
@@ -103,7 +94,7 @@ export function InstitutionsTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {inCharge.map((person, index) => (
+            {data?.map((person, index) => (
               <TableRow key={index} className="h-[4.8rem] border-b-0">
                 <TableCell>
                   <Checkbox id={`select-${index}`} />
@@ -111,7 +102,7 @@ export function InstitutionsTable() {
                 <TableCell>{person.name}</TableCell>
                 <TableCell className="">
                   <div className="flex items-center gap-[0.5rem]">
-                    <span> {person.email}</span>
+                    <span> {person.location}</span>
                     <Copy
                       className="text-secundGray"
                       strokeWidth={2.3}
@@ -119,7 +110,7 @@ export function InstitutionsTable() {
                     />
                   </div>
                 </TableCell>
-                <TableCell>
+                {/* <TableCell>
                   <div className="flex items-center gap-[0.5rem]">
                     <span> {person.contact}</span>
                     <Copy
@@ -128,10 +119,9 @@ export function InstitutionsTable() {
                       size={16}
                     />
                   </div>
-                </TableCell>
-                <TableCell>{person.associatedChildren}</TableCell>
-                <TableCell>{person.date}</TableCell>
-                <TableCell>
+                </TableCell> */}
+
+                {/* <TableCell>
                   {person.status == "Active" ? (
                     <Badge className="px-[1rem] py-[0.8rem]">
                       {person.status}
@@ -144,7 +134,7 @@ export function InstitutionsTable() {
                       {person.status}
                     </Badge>
                   )}
-                </TableCell>
+                </TableCell> */}
               </TableRow>
             ))}
           </TableBody>

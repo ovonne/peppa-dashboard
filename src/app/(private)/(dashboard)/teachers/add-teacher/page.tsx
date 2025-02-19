@@ -95,7 +95,7 @@ export default function AddTeacher() {
 
       formData.append(
         "schedules",
-        JSON.stringify([[{ start: "12:00", end: "13:00" }]]),
+        JSON.stringify([["12:12 - 22:30", "15:42 - 22:30"]]),
       );
 
       if (image) {

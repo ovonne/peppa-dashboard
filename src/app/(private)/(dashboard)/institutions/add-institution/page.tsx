@@ -11,13 +11,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { teacherService } from "@/services/TeacherService";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Calendar,
-  CloudUpload,
-  Image as ImageIcon,
-  LoaderCircle,
-} from "lucide-react";
-import Image from "next/image";
+import { CloudUpload, Image as ImageIcon, LoaderCircle } from "lucide-react";
 import Link from "next/link";
 
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -117,7 +111,7 @@ export default function AddInstitutions() {
       <div className="flex items-end justify-between">
         <h2 className="text-[1.6rem] font-medium">Add Teacher</h2>
         <div className="flex gap-[1rem]">
-          <Link href={"/teachers"}>
+          <Link href={"/institutions"}>
             <Button className="rounded-[0.8rem]" variant={"destructive"}>
               <span>Cancel activity</span>
             </Button>
@@ -128,7 +122,7 @@ export default function AddInstitutions() {
         </div>
       </div>
 
-      <div className="flex gap-[2rem]">
+      <div className="">
         <div className="rounded-[1.2rem] bg-white px-[4.2rem] py-[3.1rem]">
           <div className="flex gap-[5rem]">
             <div className="flex max-w-[40rem] flex-col gap-[2.4rem]">
@@ -347,94 +341,6 @@ export default function AddInstitutions() {
                   className="h-[16rem] rounded-[0.8rem] border-none bg-lightGray p-[1.6rem] !text-[1.4rem] font-medium"
                   placeholder="Teacher description"
                 />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="w-[30%] space-y-[2.8rem] rounded-[1.2rem] bg-white px-[3rem] py-[3.1rem]">
-          <h2 className="text-center text-[1.6rem] font-medium">Previews</h2>
-          <div className="rounded-[1.2rem] shadow-lg shadow-lightGray">
-            <div className="relative h-[24rem] w-full overflow-hidden">
-              {preview ? (
-                <Image
-                  src={preview}
-                  alt="Preview"
-                  layout="fill"
-                  className="rounded-[1.2rem] object-cover"
-                />
-              ) : (
-                <div></div>
-              )}
-            </div>
-            <div className="px-[1rem] py-[1.5rem]">
-              <div className="flex justify-between">
-                <p className="text-[1.4rem] font-bold">
-                  {form.getValues("name")}
-                </p>
-                <p className="text-[1.4rem] font-medium text-highlighted">
-                  KZ{form.getValues("daily")}
-                  <span className="text-[1rem] text-Gray">/hora</span>
-                </p>
-              </div>
-              <div className="flex justify-between">
-                <p className="text-[1.4rem] text-Gray">
-                  {form.getValues("education_level")}
-                </p>
-                <p></p>
-              </div>
-            </div>
-          </div>
-          <div className="border-b-[0.4rem] border-lightGray">
-            <h2 className="text-[1.8rem] font-medium">About Me</h2>
-            <p className="mb-[1rem] text-[1.2rem] text-Gray">
-              Degree in Pedagogy, graduated in Angola. He stands out for his
-              experience in education, with more than 5 years of experience in
-              education
-            </p>
-          </div>
-          <div>
-            <div className="flex items-center justify-between">
-              <h2 className="text-[1.8rem] font-medium">to schedule</h2>
-              <Calendar size={20}></Calendar>
-            </div>
-            <div className="mt-[2rem] flex justify-between">
-              <div className="p-[1.2rem]">
-                <p className="text-[1.4rem] text-Gray">seg</p>
-                <h2 className="text-[2rem] font-bold">23</h2>
-              </div>
-              <div className="p-[1.2rem]">
-                <p className="text-[1.4rem] text-Gray">ter</p>
-                <h2 className="text-[2rem] font-bold">24</h2>
-              </div>
-              <div className="p-[1.2rem]">
-                <p className="text-[1.4rem] text-Gray">Qua</p>
-                <h2 className="text-[2rem] font-bold">25</h2>
-              </div>
-              <div className="rounded-[0.8rem] bg-highlighted p-[1.2rem] text-white">
-                <p className="text-[1.4rem]">Qui</p>
-                <h2 className="text-[2rem] font-bold">26</h2>
-              </div>
-              <div className="p-[1.2rem]">
-                <p className="text-[1.4rem] text-Gray">Sex</p>
-                <h2 className="text-[2rem] font-bold">27</h2>
-              </div>
-              <div className="p-[1.2rem]">
-                <p className="text-[1.4rem] text-Gray">Dom</p>
-                <h2 className="text-[2rem] font-bold">22</h2>
-              </div>
-            </div>
-          </div>
-          <div>
-            <h2 className="text-[1.8rem] font-medium">Available schedules</h2>
-            <div className="mt-[2rem] flex gap-[1rem]">
-              <div className="rounded-[0.8rem] border border-Gray p-[0.8rem] text-center">
-                <p className="text-[1.4rem] font-bold">12:00</p>
-              </div>
-              <div className="rounded-[0.8rem] border border-highlighted bg-highlighted p-[0.8rem] text-center text-white">
-                <p className="text-[1.4rem] font-bold">13:30</p>
-              </div>
-              <div className="rounded-[0.8rem] border border-Gray p-[0.8rem] text-center">
-                <p className="text-[1.4rem] font-bold">14:00</p>
               </div>
             </div>
           </div>

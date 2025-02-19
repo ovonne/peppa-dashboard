@@ -38,11 +38,19 @@ import type { InChargeType } from "@/types";
 import {
   ChevronLeft,
   ChevronRight,
+  EllipsisVertical,
   FilterIcon,
   ListFilter,
 } from "lucide-react";
 
-const TableHeaderItems = ["Name", "Email", "Contact", "Location", "Status"];
+const TableHeaderItems = [
+  "Name",
+  "Email",
+  "Contact",
+  "Location",
+  "Status",
+  "Action",
+];
 
 export function InChargeTable() {
   const { data, error, isLoading } = useInCharges();
@@ -70,7 +78,7 @@ export function InChargeTable() {
           </Button>
 
           <DropdownMenu>
-            <DropdownMenuTrigger className="rounded-[0.6rem] border px-[2rem]">
+            <DropdownMenuTrigger className="bo rounded-[0.3rem] border border-darkGray px-[2rem] text-[1.2rem] font-medium text-darkGray">
               Actions
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -78,7 +86,6 @@ export function InChargeTable() {
               <DropdownMenuSeparator />
               <DropdownMenuItem>Remove</DropdownMenuItem>
               <DropdownMenuItem>Disable</DropdownMenuItem>
-              <DropdownMenuItem>Edit</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -133,6 +140,21 @@ export function InChargeTable() {
                   >
                     {person.status ? "Active" : "Inactive"}
                   </Badge>
+                </TableCell>
+                <TableCell>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="m-auto rounded-[0.3rem] text-left font-medium text-darkGray">
+                      <EllipsisVertical size={20}></EllipsisVertical>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem>Details</DropdownMenuItem>
+                      <DropdownMenuItem>Edit</DropdownMenuItem>
+                      <DropdownMenuItem>Remove</DropdownMenuItem>
+                      <DropdownMenuItem>Disable</DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </TableCell>
               </TableRow>
             ))}

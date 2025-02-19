@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useState } from "react";
 
 import {
   Select,
@@ -27,15 +28,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Plus, Search } from "lucide-react";
+import { EllipsisVertical, Plus, Search } from "lucide-react";
 import Link from "next/link";
 
-import { inCharge } from "@/store/InCharge";
-import { ChevronLeft, ChevronRight, Copy, ListFilter } from "lucide-react";
+import { permissions } from "@/store/pe";
+import { ChevronLeft, ChevronRight, ListFilter } from "lucide-react";
 
 const TableHeaderItems = ["Name", "Permissions", "Access group", "Actions"];
 
 export default function Permissions() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredPermissions = permissions.filter((permission) =>
+    permission.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
+
   return (
     <div className="mt-[2rem] flex flex-col gap-[2.5rem] px-[2.5rem]">
       <div className="flex items-end justify-between">
@@ -53,18 +60,23 @@ export default function Permissions() {
         <div className="my-[3.3rem] flex items-center justify-between">
           <div className="flex rounded-[1.2rem] bg-lightGray p-[1.3rem]">
             <Search className="text-Gray"></Search>
-            <input className="w-[37rem] border-none bg-transparent px-[1rem] text-[1.4rem] shadow-none !outline-none"></input>
+            <input
+              className="w-[37rem] border-none bg-transparent px-[1rem] text-[1.4rem] shadow-none !outline-none"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search by name"
+            />
           </div>
           <div>
             <DropdownMenu>
-              <DropdownMenuTrigger className="rounded-[0.8rem] border px-[2rem] py-[1rem]">
+              <DropdownMenuTrigger className="rounded-[0.6rem] border border-darkGray px-[2rem] py-[1rem] text-[1.2rem] font-medium">
                 Actions
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
+                <DropdownMenuItem>Change All</DropdownMenuItem>
+                <DropdownMenuItem>Remove all</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -75,6 +87,8 @@ export default function Permissions() {
             <Table>
               <TableHeader className="bg-lightGray">
                 <TableRow className="h-[5.2rem] p-[1.7rem]">
+                  <TableHead></TableHead>
+
                   {TableHeaderItems.map((header) => (
                     <TableHead key={header}>
                       <div className="flex items-center gap-[0.8rem]">
@@ -88,30 +102,35 @@ export default function Permissions() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {inCharge.map((person, index) => (
+                {filteredPermissions.map((permission, index) => (
                   <TableRow key={index} className="h-[4.8rem] border-b-0">
-                    <TableCell>{person.name}</TableCell>
+                    <TableCell>{}</TableCell>
+                    <TableCell>{permission.name}</TableCell>
                     <TableCell className="">
                       <div className="flex items-center gap-[0.5rem]">
-                        <span> {person.email}</span>
-                        <Copy
-                          className="text-secundGray"
-                          strokeWidth={2.3}
-                          size={16}
-                        />
+                        <span> {permission.permission}</span>
                       </div>
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-[0.5rem]">
-                        <span> {person.contact}</span>
-                        <Copy
-                          className="text-secundGray"
-                          strokeWidth={2.3}
-                          size={16}
-                        />
+                        <span> {permission.group}</span>
                       </div>
                     </TableCell>
-                    <TableCell>{person.associatedChildren}</TableCell>
+                    <TableCell>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger className="m-auto rounded-[0.3rem] text-left font-medium text-darkGray">
+                          <EllipsisVertical size={20}></EllipsisVertical>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem>Details</DropdownMenuItem>
+                          <DropdownMenuItem>Edit</DropdownMenuItem>
+                          <DropdownMenuItem>Remove</DropdownMenuItem>
+                          <DropdownMenuItem>Disable</DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
