@@ -126,12 +126,12 @@ export function TeachersTable() {
                   <div className="flex items-center gap-[1rem]">
                     <div className="relative h-[3.9rem] w-[3.9rem] overflow-hidden rounded-[0.8rem] bg-lightGray">
                       <Image
-                        src={teacher?.avatar_url}
+                        src={teacher?.avatar_url || "/images/teacher.png"}
                         alt={"Image of: " + teacher.name}
                         fill
                         className="rounded-[1.2rem] object-cover"
                       />
-                    </div>{" "}
+                    </div>
                     {teacher.name}
                   </div>
                 </TableCell>
