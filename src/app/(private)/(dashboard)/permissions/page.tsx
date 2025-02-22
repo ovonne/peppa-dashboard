@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,12 +27,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { EllipsisVertical, Plus, Search } from "lucide-react";
-import Link from "next/link";
+import { EllipsisVertical, Search } from "lucide-react";
 
 import { permissions } from "@/store/pe";
 import { getInitials } from "@/utils/getInitials";
 import { ChevronLeft, ChevronRight, ListFilter } from "lucide-react";
+import AddUserModal from "./components/AddUserModal";
 
 const TableHeaderItems = ["Name", "Permissions", "Access group", "Actions"];
 
@@ -48,13 +47,7 @@ export default function Permissions() {
     <div className="mt-[2rem] flex flex-col gap-[2.5rem] px-[2.5rem]">
       <div className="flex items-end justify-between">
         <h2 className="text-[1.6rem] font-medium">Permissions</h2>
-
-        <Link href={"/products/add-product"}>
-          <Button className="flex rounded-[0.8rem]">
-            <Plus className="!size-[1.5rem]"></Plus>
-            <span>Add Users</span>
-          </Button>
-        </Link>
+        <AddUserModal></AddUserModal>
       </div>
       <div className="rounded-[1.2rem] bg-white px-[4rem] py-[3.2rem]">
         <h2 className="text-[1.6rem] font-medium">Duties</h2>
