@@ -157,7 +157,9 @@ export function InChargeTable() {
                       </DropdownMenuItem>
                       <DropdownMenuItem>Edit</DropdownMenuItem>
                       <DropdownMenuItem>Remove</DropdownMenuItem>
-                      <DropdownMenuItem>Disable</DropdownMenuItem>
+                      <DropdownMenuItem>
+                        {person.status ? "Disable" : "Enable"}
+                      </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </TableCell>

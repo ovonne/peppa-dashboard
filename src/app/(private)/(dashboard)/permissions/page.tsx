@@ -29,7 +29,7 @@ import {
 } from "@/components/ui/table";
 import { EllipsisVertical, Search } from "lucide-react";
 
-import { permissions } from "@/store/pe";
+import { permissions } from "@/store/permission";
 import { getInitials } from "@/utils/getInitials";
 import { ChevronLeft, ChevronRight, ListFilter } from "lucide-react";
 import AddUserModal from "./components/AddUserModal";

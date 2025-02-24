@@ -39,7 +39,7 @@ const inChargeService = {
   },
 
   update: async (
-    id: number,
+    id: string,
     data: Partial<Omit<InChargeType, "id">>,
   ): Promise<InChargeType> => {
     try {
@@ -52,7 +52,7 @@ const inChargeService = {
     }
   },
 
-  delete: async (id: number): Promise<void> => {
+  delete: async (id: String): Promise<void> => {
     try {
       await api.delete(`${ENDPOINT}${id}/`);
     } catch (error: any) {
