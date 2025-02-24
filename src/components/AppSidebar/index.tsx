@@ -63,11 +63,12 @@ export function AppSidebar() {
         <SidebarFooter className="p-[2rem]">
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link onClick={() => authService.logout()} href="#">
-                <SidebarMenuItem className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted">
-                  <LogOut size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />
-                </SidebarMenuItem>
-              </Link>
+              <SidebarMenuItem
+                onClick={() => authService.logout()}
+                className="flex h-[5.6rem] w-[5.6rem] items-center justify-center rounded-[1.2rem] p-4 transition-colors hover:bg-white hover:text-highlighted"
+              >
+                <LogOut size={ICON_SIZE} strokeWidth={ICON_STROKE_WIDTH} />
+              </SidebarMenuItem>
             </TooltipTrigger>
             <TooltipContent side="right">Logout</TooltipContent>
           </Tooltip>
